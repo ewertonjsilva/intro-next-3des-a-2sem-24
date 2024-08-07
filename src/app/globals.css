@@ -145,29 +145,51 @@ body {
 	font-family: "Roboto", sans-serif;
 	font-weight: 500;
 	font-style: normal;
+	font-size: 1.6rem;
+	/* border: 0.3rem solid #f00;  */
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	font-size: 1.6rem; 
-	/* border: 0.2rem solid #f00; */
+	justify-content: center;
 }
 
-.container {
-	width: 100%;
-	max-width: 124rem;
+.containerGlobal {
+	width: 98%;
+	max-width: 112.8rem;
+	/* border: 0.3rem solid #00f;  */
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+	/* height: 100vh; */
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	/* border: 0.2rem solid #0f0; */
-}
+} 
 
 a {
-	text-decoration: none; 
+	text-decoration: none;
 }
 
 h1 {
-	font-size: 2.4rem; 
-	font-weight: bold;
+	font-size: 3.2rem;
 	margin: 1rem;
 }
 
+h2 {
+	font-size: 2.8rem;
+	margin: 0.6rem;
+}
+
+h3 {
+	font-size: 1.6rem;
+	margin: 0.3rem;
+	font-weight: bold;
+}
+
+@media screen and (max-width: 960px) {
+	html {
+		font-size: 50%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	html {
+		font-size: 37.2%;
+	}
+}
