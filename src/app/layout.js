@@ -14,15 +14,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
       {/* <body className={inter.className}>{children}</body> */}
-      <body>
+      <body>        
+        <div className="layout">  
 
-        <div className="src/app/globals.css">
-          
           {children}
-
           <Rodape />
         </div>
-        
       </body>
     </html>
   );

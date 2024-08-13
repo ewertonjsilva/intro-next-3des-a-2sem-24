@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <div className="containerGlobal">
       <div className={styles.containerTitulo}>
-        <h1 className={styles.txtTitulo}>Login</h1>
+        <h1 className={styles.txtTitulo}>Sobre</h1>
       </div>      
     </div>
   );

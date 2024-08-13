@@ -151,6 +151,11 @@ body {
 	justify-content: center;
 }
 
+.layout {
+	width: 100%; 
+	max-width: 112.8rem;
+}
+
 .containerGlobal {
 	width: 98%;
 	max-width: 112.8rem;
