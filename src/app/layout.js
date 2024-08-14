@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       {/* <body className={inter.className}>{children}</body> */}
       <body>        
         <div className="layout">  
-          {/* <Cabecalho /> */}
+          <Cabecalho />
           {children}
           <Rodape />
         </div>
