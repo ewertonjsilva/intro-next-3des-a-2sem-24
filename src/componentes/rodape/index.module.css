@@ -4,7 +4,6 @@
     justify-content: center; 
     max-width: 112.8rem;
     border-radius: 2rem; 
-    width: 98%;
     padding-bottom: 2rem;
 }
 
@@ -17,7 +16,7 @@
 
 .rodape .social { 
     /* margin: 0 auto; */
-    color: #FAFAFA;
+    /* color: #FAFAFA; */
     background-color: #B71C1C;  
     display: flex; 
     justify-content: center; 

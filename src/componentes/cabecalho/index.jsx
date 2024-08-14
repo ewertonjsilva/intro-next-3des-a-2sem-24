@@ -1,14 +1,17 @@
-"use client"
+'use client'
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { MdFastfood, MdMenu } from 'react-icons/md';
 
 import styles from './index.module.css';
 
-function Header({ pag }) {
+function Header() {
 
   const [mobile, setMobile] = useState(false);
+
+  const rota = usePathname();
 
   function ativaMenu() {
     if (mobile === false) {
@@ -27,24 +30,60 @@ function Header({ pag }) {
             <label id="titulo">BomBurguer</label>
           </div>
           <div className={styles.menuGrande}>
-            <Link href='/' className={pag === 'home' ? styles.active : ''}>Home</Link>
-            <Link href='/listprod' className={pag === 'produtos' ? styles.active : ''}>Produtos</Link>
-            <Link href='/usuarios/cadastro' className={pag === 'cadUsu' ? styles.active : ''}>Cadastrar</Link>
-            <Link href='/sobre' className={pag === 'contato' ? styles.active : ''}>Sobre</Link>
-            <Link href='/usuarios/login' className={pag === 'login' ? styles.active : ''}>Login</Link>
+            <Link
+              href='/'
+              className={rota === '/' ? styles.active : ''}
+            >Home</Link>
+            <Link
+              href='/listprod'
+              className={rota === '/listprod' ? styles.active : ''}
+            >Produtos</Link>
+            <Link
+              href='/usuarios/cadastro'
+              className={rota === '/usuarios/cadastro' ? styles.active : ''}
+            >Cadastrar</Link>
+            <Link
+              href='/sobre'
+              className={rota === '/sobre' ? styles.active : ''}
+            >Sobre</Link>
+            <Link
+              href='/usuarios/login'
+              className={rota === '/usuarios/login' ? styles.active : ''}
+            >Login</Link>
           </div>
-          <div className="menuMobile">
-            <a href="#" onClick={ativaMenu} className={styles.icon} id="mIco">
-              <MdMenu className={styles.icon} id="logo" />
-            </a>
+          <div className={styles.menuMobile}>
+            <MdMenu onClick={ativaMenu} className={styles.icon} id="logo" />
           </div>
         </div>
-        <div className={mobile === false ? styles.menuMobileExpandidon : styles.menuMobileExpandidos} id="mostraOpMobile">
-          <Link href='/' className={pag === 'home' ? styles.active : ''}>Home</Link>
-          <Link href='/listprod' className={pag === 'produtos' ? styles.active : ''}>Produtos</Link>
-          <Link href='/usuarios/cadastro' className={pag === 'cadUsu' ? styles.active : ''}>Cadastrar</Link>
-          <Link href='/sobre' className={pag === 'contato' ? styles.active : ''}>Sobre</Link>
-          <Link href='/usuarios/login' className={pag === 'login' ? styles.active : ''}>Login</Link>
+        <div
+          className={mobile === false ? styles.menuMobileExpandidon : styles.menuMobileExpandidos}
+          id="mostraOpMobile"
+        >
+          <Link
+            href='/'
+            onClick={ativaMenu}
+            className={rota === '/' ? styles.active : ''}
+          >Home</Link>
+          <Link
+            href='/listprod'
+            onClick={ativaMenu}
+            className={rota === '/listprod' ? styles.active : ''}
+          >Produtos</Link>
+          <Link
+            href='/usuarios/cadastro'
+            onClick={ativaMenu}
+            className={rota === '/usuarios/cadastro' ? styles.active : ''}
+          >Cadastrar</Link>
+          <Link
+            href='/sobre'
+            onClick={ativaMenu}
+            className={rota === '/sobre' ? styles.active : ''}
+          >Sobre</Link>
+          <Link
+            href='/usuarios/login'
+            onClick={ativaMenu}
+            className={rota === '/usuarios/login' ? styles.active : ''}
+          >Login</Link>
         </div>
       </nav>
     </header>
