@@ -24,7 +24,7 @@ function Header({ pag }) {
         <div className={styles.menu}>
           <div>
             <MdFastfood className={styles.icon} id="logo" />
-            <label for="" id="titulo">BomBurguer</label>
+            <label id="titulo">BomBurguer</label>
           </div>
           <div className={styles.menuGrande}>
             <Link href='/' className={pag === 'home' ? styles.active : ''}>Home</Link>

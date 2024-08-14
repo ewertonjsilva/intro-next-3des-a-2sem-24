@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
       {/* <body className={inter.className}>{children}</body> */}
-      <body>        
+      <body suppressHydrationWarning={true}>        
         <div className="layout">  
           <Cabecalho />
           {children}
