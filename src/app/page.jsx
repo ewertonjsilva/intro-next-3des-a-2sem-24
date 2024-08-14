@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
         <h2>Exemplo h2</h2>
         <h3>Exemplo h3</h3>
         <p>Exemplo parágrafo</p>
+        <Link href="/temp">Temp</Link>
 
         {/* <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}> */}
         <div className={styles.containerImagem}>
