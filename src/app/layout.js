@@ -4,7 +4,7 @@ import "./globals.css";
 // const inter = Inter({ subsets: ["latin"] });
 
 import Cabecalho from "@/componentes/cabecalho";
-import Rodape from '../componentes/rodape';
+import Rodape from "@/componentes/rodape";
 
 export const metadata = {
   title: "Create Next App",
@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       {/* <body className={inter.className}>{children}</body> */}
       <body>        
         <div className="layout">  
-          <Cabecalho />
+          {/* <Cabecalho /> */}
           {children}
           <Rodape />
         </div>
