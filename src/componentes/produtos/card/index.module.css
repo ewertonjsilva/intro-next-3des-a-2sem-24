@@ -1,0 +1,47 @@
+.card {
+    width: 30%;
+    height: 26rem;
+    /* border: 1px solid #ddd; */
+    border-radius: 2rem;
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* background-color: #fff; */
+    margin-bottom: 1.6rem;
+  }
+  
+  .imagemContainer {
+    width: 30rem;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 2rem;
+    margin-bottom: 16px;
+  }
+  
+  .imagemProduto {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .produtoNome {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    color: #333;
+  }
+  
+  .produtoValor {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 8px 0 0;
+    color: #888;
+    text-align: center;
+  }
+  

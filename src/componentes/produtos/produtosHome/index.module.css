@@ -1,0 +1,8 @@
+.produtos {
+    /* margin: 1rem auto; */
+    display: flex;
+    justify-content: space-between;    
+    max-width: 1440px;
+    border-radius: 2rem;
+    flex-wrap: wrap;
+}
