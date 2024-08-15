@@ -1,0 +1,128 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border: solid 0.5rem #B71C1C;
+    margin: 1rem auto;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    color: #7F0000;
+    width: 95%;
+    max-width: 1410px;
+    height: 70vh;
+}
+
+.container .containerItem {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+}
+
+.container .containerItem .imagemProd {
+    max-width: 100%;
+    width: auto;
+    border-radius: 2rem;
+    max-height: 70vh;
+}
+
+.container .containerItem .titulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#titulo {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.container .containerItem .titulo .icon {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.container .containerItem .descricao {
+    font-size: 3rem;
+}
+
+#valor {
+    font-size: 2.5rem;
+}
+
+.container .containerItem .comprar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.container span {
+    display: block;
+    margin: 1rem;
+    text-align: center;
+}
+
+.container .containerItem .comprar span {
+    font-size: 2rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    border: solid #FAFAFA 0.2rem;
+}
+
+.container .containerItem .comprar input {
+    height: 2.5rem;
+    width: 4rem;
+    border: solid #7F0000 0.1rem;
+    color: #7F0000;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.container .containerItem .comprar button {
+    height: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 15rem;
+    background-color: #FAFAFA;
+    border: solid #7F0000 0.3rem;
+    border-radius: 2rem;
+    color: #7F0000;
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
+.container .containerItem .comprar button:hover {
+    background-color: #F05545;
+}
+
+.container .containerItem .comprar p {
+    width: 50%;
+}
+
+
+.container .containerItem .comprar button img {
+    height: 4rem;
+    width: 3rem;
+
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .imagemProd {
+        max-height: none;
+    }
+}
