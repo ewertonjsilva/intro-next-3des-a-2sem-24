@@ -16,11 +16,11 @@ export default function RootLayout({ children }) {
     <html lang="pt-br">
       {/* <body className={inter.className}>{children}</body> */}
       <body suppressHydrationWarning={true}>        
-        <div className="layout">  
+        {/* <div className="layout">   */}
           <Cabecalho />
           {children}
           <Rodape />
-        </div>
+        {/* </div> */}
       </body>
     </html>
   );

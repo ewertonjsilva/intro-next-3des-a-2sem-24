@@ -3,6 +3,7 @@
     background-color: #B71C1C;
     display: flex;
     justify-content: center;
+    width: 100%;
     max-width: 112.8rem;   
     border-radius: 2rem;
     margin-top: 1.6rem;

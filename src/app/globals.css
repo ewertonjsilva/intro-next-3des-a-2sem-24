@@ -149,13 +149,14 @@ body {
 	font-size: 1.6rem;
 	/* border: 0.3rem solid #f00;  */
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 	background-color: #fafafa;
 }
 
 .layout {
 	width: 100%; 
-	max-width: 112.8rem;
+	max-width: 112.8rem; 
 }
 
 .containerGlobal {
@@ -166,6 +167,7 @@ body {
 	/* height: 100vh; */
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 } 
 
 a {

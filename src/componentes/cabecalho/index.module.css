@@ -5,7 +5,10 @@
     color: #B71C1C;
     border-bottom: 0.4rem solid #B71C1C;
     font-size: 4.4rem;
+    width: 100%;
     max-width: 112.8rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .containerNav .menu {

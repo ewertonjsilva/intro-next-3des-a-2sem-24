@@ -22,70 +22,68 @@ function Header() {
   }
 
   return (
-    <header>
-      <nav className={styles.containerNav}>
-        <div className={styles.menu}>
-          <div>
-            <MdFastfood className={styles.icon} id="logo" />
-            <label id="titulo">BomBurguer</label>
-          </div>
-          <div className={styles.menuGrande}>
-            <Link
-              href='/'
-              className={rota === '/' ? styles.active : ''}
-            >Home</Link>
-            <Link
-              href='/listprod'
-              className={rota === '/listprod' ? styles.active : ''}
-            >Produtos</Link>
-            <Link
-              href='/usuarios/cadastro'
-              className={rota === '/usuarios/cadastro' ? styles.active : ''}
-            >Cadastrar</Link>
-            <Link
-              href='/sobre'
-              className={rota === '/sobre' ? styles.active : ''}
-            >Sobre</Link>
-            <Link
-              href='/usuarios/login'
-              className={rota === '/usuarios/login' ? styles.active : ''}
-            >Login</Link>
-          </div>
-          <div className={styles.menuMobile}>
-            <MdMenu onClick={ativaMenu} className={styles.icon} id="logo" />
-          </div>
+    <header className={styles.containerNav}>
+      <div className={styles.menu}>
+        <div>
+          <MdFastfood className={styles.icon} id="logo" />
+          <label id="titulo">BomBurguer</label>
         </div>
-        <div
-          className={mobile === false ? styles.menuMobileExpandidon : styles.menuMobileExpandidos}
-          id="mostraOpMobile"
-        >
+        <nav className={styles.menuGrande}>
           <Link
             href='/'
-            onClick={ativaMenu}
             className={rota === '/' ? styles.active : ''}
           >Home</Link>
           <Link
             href='/listprod'
-            onClick={ativaMenu}
             className={rota === '/listprod' ? styles.active : ''}
           >Produtos</Link>
           <Link
             href='/usuarios/cadastro'
-            onClick={ativaMenu}
             className={rota === '/usuarios/cadastro' ? styles.active : ''}
           >Cadastrar</Link>
           <Link
             href='/sobre'
-            onClick={ativaMenu}
             className={rota === '/sobre' ? styles.active : ''}
           >Sobre</Link>
           <Link
             href='/usuarios/login'
-            onClick={ativaMenu}
             className={rota === '/usuarios/login' ? styles.active : ''}
           >Login</Link>
+        </nav>
+        <div className={styles.menuMobile}>
+          <MdMenu onClick={ativaMenu} className={styles.icon} id="logo" />
         </div>
-      </nav>
+      </div>
+      <div
+        className={mobile === false ? styles.menuMobileExpandidon : styles.menuMobileExpandidos}
+        id="mostraOpMobile"
+      >
+        <Link
+          href='/'
+          onClick={ativaMenu}
+          className={rota === '/' ? styles.active : ''}
+        >Home</Link>
+        <Link
+          href='/listprod'
+          onClick={ativaMenu}
+          className={rota === '/listprod' ? styles.active : ''}
+        >Produtos</Link>
+        <Link
+          href='/usuarios/cadastro'
+          onClick={ativaMenu}
+          className={rota === '/usuarios/cadastro' ? styles.active : ''}
+        >Cadastrar</Link>
+        <Link
+          href='/sobre'
+          onClick={ativaMenu}
+          className={rota === '/sobre' ? styles.active : ''}
+        >Sobre</Link>
+        <Link
+          href='/usuarios/login'
+          onClick={ativaMenu}
+          className={rota === '/usuarios/login' ? styles.active : ''}
+        >Login</Link>
+      </div>
     </header>
   );
 }
