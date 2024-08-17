@@ -1,8 +1,6 @@
 'use client'
-import React, { useState, useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import Image from 'next/image';
-
 
 import carr from '../../../../public/icones/carrinho.svg';
 
@@ -10,16 +8,8 @@ import styles from './index.module.css';
 
 function Produto({ produto }) {
 
-    // const location = useLocation();
-
-    // const [itemCarregado, setItemCarregado] = useState({});
     const [qtd, setQtd] = useState(1);
     const [total, setTotal] = useState(produto.prd_valor);
-
-    useEffect(() => {
-        //   setItemCarregado(location.state);
-        setTotal(produto.prd_valor);
-    }, []);
 
     function handleAtlQtdVlr(nvVlr) {
         let totalTemp = 0;
@@ -27,23 +17,6 @@ function Produto({ produto }) {
         setQtd(Number(nvVlr));
         setTotal(totalTemp.toFixed(2));
     }
-
-    // function handleAddItem() {
-    //     let itCarrinho = carrinho;
-    //     let itAdd = {
-    //         prd_id: produto.prd_id,
-    //         prd_nome: produto.prd_nome,
-    //         prd_img: produto.prd_img,
-    //         prd_valor: produto.prd_valor,
-    //         prd_descricao: produto.prd_descricao,
-    //         prd_unidade: produto.prd_unidade,
-    //         img_tp_prod: produto.img_tp_prod,
-    //         quantidade: qtd
-    //     };
-    //     itCarrinho.push(itAdd);
-    //     addCarrinho(itCarrinho);
-    //     alteraTela('carrinho');
-    // }
 
     return (
         <div className={styles.container}>
@@ -56,11 +29,11 @@ function Produto({ produto }) {
             </div>
             <div className={styles.containerItem}>
                 <div className={styles.titulo}>
-                    <span id="titulo">{produto.prd_nome}</span>
+                    <h1>{produto.prd_nome}</h1>
                     <Image src={produto.img_tp_prod} className={styles.icon} alt={produto.img_tp_prod} />
                 </div>
                 <span className={styles.descricao}>{produto.prd_descricao}</span>
-                <span id="valor">{'R$ ' + produto.prd_valor}</span>
+                <span className={styles.valor}>{'R$ ' + produto.prd_valor}</span>
                 <div className={styles.comprar}>
                     <span>Quantidade</span>
                     <input

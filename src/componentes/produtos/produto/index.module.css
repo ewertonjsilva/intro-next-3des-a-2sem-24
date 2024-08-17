@@ -9,9 +9,9 @@
     padding: 1rem;
     border-radius: 2rem;
     color: #7F0000;
-    width: 95%;
-    max-width: 1410px;
-    height: 70vh;
+    /* width: 95%; */
+    max-width: 112.8rem;
+    height: 60vh;
 }
 
 .container .containerItem {
@@ -25,7 +25,7 @@
     max-width: 100%;
     width: auto;
     border-radius: 2rem;
-    max-height: 70vh;
+    max-height: 60vh;
 }
 
 .container .containerItem .titulo {
@@ -33,11 +33,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-}
-
-#titulo {
-    font-size: 4rem;
-    font-weight: bold;
 }
 
 .container .containerItem .titulo .icon {
@@ -49,7 +44,7 @@
     font-size: 3rem;
 }
 
-#valor {
+.valor {
     font-size: 2.5rem;
 }
 
