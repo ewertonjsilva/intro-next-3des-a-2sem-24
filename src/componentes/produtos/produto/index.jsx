@@ -1,31 +1,32 @@
-// import React, { useState, useEffect } from 'react';
+'use client'
+import React, { useState, useEffect } from 'react';
 // import { useLocation } from 'react-router-dom';
 import Image from 'next/image';
 
 
-import carr from '../../../imagens/icones/carrinho.svg';
+import carr from '../../../../public/icones/carrinho.svg';
 
 import styles from './index.module.css';
 
-function Produto({ produto, alteraTela, carrinho, addCarrinho }) {
+function Produto({ produto }) {
 
     // const location = useLocation();
 
     // const [itemCarregado, setItemCarregado] = useState({});
-    //   const [qtd, setQtd] = useState(1);
-    //   const [total, setTotal] = useState(produto.prd_valor);
+    const [qtd, setQtd] = useState(1);
+    const [total, setTotal] = useState(produto.prd_valor);
 
-    // useEffect(() => {
-    //   setItemCarregado(location.state);
-    //   setTotal(location.state.prd_valor);
-    // }, []);
+    useEffect(() => {
+        //   setItemCarregado(location.state);
+        setTotal(produto.prd_valor);
+    }, []);
 
-    //   function handleAtlQtdVlr(nvVlr) {
-    //     let totalTemp = 0;
-    //     totalTemp = Number(nvVlr) * produto.prd_valor;
-    //     setQtd(Number(nvVlr));
-    //     setTotal(totalTemp.toFixed(2));
-    //   }
+    function handleAtlQtdVlr(nvVlr) {
+        let totalTemp = 0;
+        totalTemp = Number(nvVlr) * produto.prd_valor;
+        setQtd(Number(nvVlr));
+        setTotal(totalTemp.toFixed(2));
+    }
 
     // function handleAddItem() {
     //     let itCarrinho = carrinho;
@@ -49,14 +50,14 @@ function Produto({ produto, alteraTela, carrinho, addCarrinho }) {
             <div className={styles.containerItem}>
                 <Image
                     className={styles.imagemProd}
-                    href={produto.prd_img}
+                    src={produto.prd_img}
                     alt={"Imagem " + produto.prd_nome}
                 />
             </div>
             <div className={styles.containerItem}>
                 <div className={styles.titulo}>
                     <span id="titulo">{produto.prd_nome}</span>
-                    <Image href={produto.img_tp_prod} className={styles.icon} alt={produto.img_tp_prod} />
+                    <Image src={produto.img_tp_prod} className={styles.icon} alt={produto.img_tp_prod} />
                 </div>
                 <span className={styles.descricao}>{produto.prd_descricao}</span>
                 <span id="valor">{'R$ ' + produto.prd_valor}</span>
@@ -65,13 +66,13 @@ function Produto({ produto, alteraTela, carrinho, addCarrinho }) {
                     <input
                         type="number"
                         min={1}
-                        // onChange={nvVlr => handleAtlQtdVlr(nvVlr.target.value)}
-                        // value={qtd}
+                        onChange={nvVlr => handleAtlQtdVlr(nvVlr.target.value)}
+                        value={qtd}
                     />
                     <span>Total R$ {total}</span>
-                    <button onClick={() => handleAddItem()}>
+                    <button onClick={() => handleAddItem()}>                    
                         <p>Inserir no carrinho</p>
-                        <Image href={carr} alt="adicionar" />
+                        <Image src={carr} alt="adicionar" />
                     </button>
                 </div>
             </div>
