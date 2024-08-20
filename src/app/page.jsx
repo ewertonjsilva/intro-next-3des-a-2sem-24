@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import { MdLunchDining, MdLocalBar, MdDining, MdIcecream, MdFastfood } from 'react-icons/md';
 
 import styles from "./page.module.css";
