@@ -19,7 +19,7 @@ function Header() {
     if (user) {
       setLogado(true);      
     }    
-  }, []);
+  }, [rota]);
 
   function sair() {
     localStorage.clear();
