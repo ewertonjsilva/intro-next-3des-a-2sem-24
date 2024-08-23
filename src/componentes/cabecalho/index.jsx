@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -10,8 +10,22 @@ import styles from './index.module.css';
 function Header() {
 
   const [mobile, setMobile] = useState(false);
+  const [logado, setLogado] = useState(false);
 
   const rota = usePathname();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setLogado(true);      
+    }    
+  }, []);
+
+  function sair() {
+    localStorage.clear();
+    window.location.reload(true);
+    // navigate('/');
+  }
 
   function ativaMenu() {
     if (mobile === false) {
@@ -20,6 +34,7 @@ function Header() {
       setMobile(false);
     }
   }
+
 
   return (
     <header className={styles.containerNav}>
@@ -45,15 +60,19 @@ function Header() {
             href='/sobre'
             className={rota === '/sobre' ? styles.active : ''}
           >Sobre</Link>
-          <Link
-            href='/usuarios/login'
-            className={rota === '/usuarios/login' ? styles.active : ''}
-          >Login</Link>
+          {
+            logado ? <span className={styles.menuSair} onClick={() => sair()}>Sair</span> : <Link
+              href='/usuarios/login'
+              className={rota === '/usuarios/login' ? styles.active : ''}
+            >Login</Link>
+          }
+
         </nav>
         <div className={styles.menuMobile}>
           <MdMenu onClick={ativaMenu} className={styles.icon} id="logo" />
         </div>
       </div>
+
       <div
         className={mobile === false ? styles.menuMobileExpandidon : styles.menuMobileExpandidos}
         id="mostraOpMobile"

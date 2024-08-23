@@ -1,15 +1,18 @@
 .containerLog {
-    display: flex;    
+    display: flex;            
+    flex-direction: column;     
     align-items: center;
-    flex-direction: column;
-    border: solid 0.5rem #7F0000;
+    justify-content: center;
+    /* border: solid 0.5rem #7F0000; */
     margin-top: 1rem;
     margin-bottom: 1rem;
-    padding: 2rem;
+    /* padding: 2rem; */
     border-radius: 2rem;
     color: #7F0000;
+    /* width: max-content; */
     width: 100%;
-    max-width: 108.8rem;
+    max-width: 108.8rem; 
+    height: 60rem;
 }
 
 .form {

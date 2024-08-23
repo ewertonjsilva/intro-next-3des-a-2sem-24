@@ -4,67 +4,64 @@ import React, { useState } from 'react';
 
 // import { Link, useNavigate } from 'react-router-dom';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 
 import { MdLogin } from "react-icons/md";
 
-// import api from '../../services/api';
+import api from '../../services/api';
 
 import styles from './index.module.css';
 
 function LoginUsu() {
 
-    // let navigate = useNavigate();
-    
+    const router = useRouter();
+
     const [login, setLogin] = useState('');
     const [senha, setSenha] = useState('');
 
 
     function handleSubmit(event) {
         event.preventDefault();
-        // logar();
+        logar();
     }
 
-    // AJUSTANDO FUNÇÃO
 
-    // async function logar(event) {
 
-    //     try {
-    //         const dados = {
-    //             login,
-    //             senha
-    //         }
-    //         const response = await api.post('/usuarios/login', dados);
+    async function logar(event) {
 
-    //         if (response.data.confirma == true) {
-    //             const objLogado = {
-    //                 "id": response.data.id,
-    //                 "nome": response.data.nome,
-    //                 "acesso": response.data.tipo
-    //             };
-    //             // signin(JSON.stringify(objLogado));                
-    //             localStorage.clear();
-    //             localStorage.setItem('user', JSON.stringify(objLogado));
-    //             // window.location.reload(true); 
-    //             navigate('/'); // direcionar de acordo com a situação
+        try {
+            const dados = {
+                usu_email: login,
+                usu_senha: senha
+            }
 
-    //             /*
-    //                 https://www.freecodecamp.org/portuguese/news/como-persistir-um-usuario-conectado-com-react/
-    //                 RECUPERAR INFO USUÁRIO LOGADO
-    //                 const user = JSON.parse(localStorage.getItem('user'));
-    //                 alert(user.id);
-    //             */
-    //         } else {
-    //             alert('Erro: ' + response.data.message)
-    //         }
+            const response = await api.post('/usuarios/login', dados);
 
-    //     } catch (error) {
-    //         if (error.response) {
-    //             alert(error.response.data.message);
-    //         } else {
-    //             alert(error);
-    //         }
-    //     }
-    // }
+            if (response.data.sucesso == true) {
+                const usuario = response.data.dados;
+                const objLogado = {
+                    "id": usuario.usu_id,
+                    "nome": usuario.usu_nome,
+                    "acesso": usuario.usu_tipo
+                };
+                // signin(JSON.stringify(objLogado));                
+                localStorage.clear();
+                localStorage.setItem('user', JSON.stringify(objLogado));                
+                router.push('/'); // é possível direcionar de acordo com a situação
+
+            } else {
+                alert('Erro: ' + error.response.data.mensagem + '\n' + error.response.data.dados)
+            }
+
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.mensagem + '\n' + error.response.data.dados);
+            } else {
+                alert(error);
+            }
+        }
+    }
 
     return (
 

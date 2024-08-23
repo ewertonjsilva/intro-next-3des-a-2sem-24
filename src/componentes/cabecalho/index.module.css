@@ -44,6 +44,21 @@
     font-size: 1.6rem;
     font-weight: bold;
     cursor: pointer;
+} 
+
+.containerNav .menu .menuGrande .menuSair {
+    width: 12rem;
+    height: 8rem;
+    color: #B71C1C;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .containerNav .menu .menuGrande a:hover {
