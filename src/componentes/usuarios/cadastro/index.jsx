@@ -179,7 +179,7 @@ export default function CadUsuario() {
                 <h2>Criar uma conta</h2>
             </div>
             <form id="form" className={styles.form} /*onSubmit={handleSubmit}*/>
-                <div /*className={valNome}*/ id="valNome">
+                <div className={styles.formControl} id="valNome">
                     <label className={styles.label} for="username">Nome de usuário</label>
                     <div className={styles.divInput}>
                         <input
@@ -196,7 +196,7 @@ export default function CadUsuario() {
                     {/* <small id="nome" className={styles.small}>{errNome}</small> */}
                 </div>
 
-                <div /*className={valEmail}*/ id="valEmail">
+                <div className={styles.formControl} id="valEmail">
                     <label className={styles.label} for="email">Email</label>
                     <div className={styles.divInput}>
                         <input
@@ -214,7 +214,7 @@ export default function CadUsuario() {
                 </div>
 
                 <div className={styles.doisItens}>
-                    <div /*className={valUf}*/ className='valEstado' id="valEstado">
+                    <div className={styles.formControl + ' ' + styles.valEstado} id="valEstado">
                         <label className={styles.label} for="estado">Estado</label>
                         <div className={styles.divInput}>
                             <select className={styles.select} name="selUf" id="estado" /*onChange={e => setUf(e.target.value)} value={uf}*/>
@@ -229,7 +229,7 @@ export default function CadUsuario() {
                         {/* <small className={styles.small}>Campo obrigatório!</small> */}
                     </div>
 
-                    <div /*className={valCidade}*/ id="valCidade">
+                    <div className={styles.formControl}>
                         <label className={styles.label} for="cidade">Cidade</label>
                         <div className={styles.divInput}>
                             <select className={styles.select} name="selCidade" id="cidade" /*onChange={e => setCid_id(e.target.value)} value={cid_id}*/>
@@ -245,7 +245,7 @@ export default function CadUsuario() {
                     </div>
                 </div>
 
-                <div /*className={valLogradouro}*/ id="valLog">
+                <div className={styles.formControl} id="valLog">
                     <label className={styles.label} for="logradouro">Logradouro</label>
                     <div className={styles.divInput}>
                         <input
@@ -263,7 +263,7 @@ export default function CadUsuario() {
                 </div>
 
                 <div className={styles.doisItens}>
-                    <div /*className={valNum}*/ className='valEstado' id="valNum">
+                    <div className={styles.formControl + ' ' + styles.valEstado} id="valNum">
                         <label className={styles.label} for="num">Número</label>
                         <div className={styles.divInput}>
                             <input
@@ -280,7 +280,7 @@ export default function CadUsuario() {
                         {/* <small className={styles.small}>Campo obrigatório!</small> */}
                     </div>
 
-                    <div /*className={valBairro}*/ id="valBairro">
+                    <div className={styles.formControl} id="valBairro">
                         <label className={styles.label} for="bairro">Bairro</label>
                         <div className={styles.divInput}>
                             <input
@@ -299,7 +299,7 @@ export default function CadUsuario() {
                 </div>
 
                 <div className={styles.doisItens}>
-                    <div /*className={styles.formControl}*/ className='valEstado' id="valComp">
+                    <div className={styles.formControl + ' ' + styles.valEstado} id="valComp">
                         <label className={styles.label} for="comp">Complemento</label>
                         <div className={styles.divInput}>
                             <input
@@ -316,7 +316,7 @@ export default function CadUsuario() {
                         {/* <small className={styles.small}>-</small> */}
                     </div>
 
-                    <div /*className={valCel}*/ id="valCelular">
+                    <div className={styles.formControl} id="valCelular">
                         <label className={styles.label} for="celular">nº celular</label>
                         <div className={styles.divInput}>
                             <input
@@ -334,7 +334,7 @@ export default function CadUsuario() {
                     </div>
                 </div>
 
-                <div /*className={valSenha}*/ id="validaSn1">
+                <div className={styles.formControl} id="validaSn1">
                     <label className={styles.label} for="password">Senha</label>
                     <div className={styles.divInput}>
                         <input
@@ -351,7 +351,7 @@ export default function CadUsuario() {
                     {/* <small className={styles.small}>{errSenha}</small> */}
                 </div>
 
-                <div /*className={valConfSenha}*/ id="validaSn2">
+                <div className={styles.formControl} id="validaSn2">
                     <label className={styles.label} for="password-confirmation">Confirmação de senha</label>
                     <div className={styles.divInput}>
                         <input
