@@ -1,0 +1,175 @@
+.containerCadUsu {
+    display: flex;
+    align-items: center; 
+    flex-direction: column; 
+    border: solid 0.5rem #7F0000; 
+    margin: 0 auto;
+    margin-top: 1rem; 
+    padding: 1rem;
+    border-radius: 2rem; 
+    color: #7F0000; 
+    width: 92%;
+    max-width: 1100px; 
+}
+
+.form {
+    padding: 20px;
+    width: 70%; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-control {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;  
+    width: 100%;
+  } 
+
+  .form-control .divInput {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+  }
+  
+  .form-control label {
+    display: flex; 
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-control .divInput input {
+    border: 2px solid #7F0000;
+    display: flex;
+    border-radius: 1rem;
+    font-size: 1.4rem;
+    width: 100%;
+    padding: 1rem; 
+    max-width: none;
+  }
+  
+  .sucesso {
+    /* position: absolute;
+    right: 20%;  */
+    display: none;
+    margin-left: 0.5rem; 
+    font-size: 2.7rem;
+    color: #2ecc71;
+  }
+  
+  .erro {
+    /* visibility: hidden; */
+    display: none;
+    margin-left: 0.5rem; 
+    font-size: 2.7rem;
+    color: #e74c3c;
+  }
+
+  .form-control small {
+    /* visibility: hidden;  */
+    display: none;
+    color: #e74c3c; 
+    font-size: 1.6rem;
+  }
+
+  .form-control label {
+    font-size: 1.6rem;
+  }
+  
+  .form button {
+    background-color: #7F0000;
+    border: 2px solid #7F0000;
+    color: #fafafa;
+    font-size: 1.5rem;
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1rem; 
+    cursor: pointer;
+  }
+
+  .form button:hover {
+    background-color: #F05545;
+    border: 2px solid #F05545;
+  }
+
+  .form img {
+    width: 1.6rem; 
+    margin-right: 1rem;
+  }
+
+  .doisItens {
+    display: flex; 
+    width: 100%;
+  } 
+
+  .divInput select {     
+    padding: 0 1rem;
+    width: 100%;
+    font-size: 1.4rem; 
+    height: 4rem;
+    border-radius: 1rem;
+    border: 2px solid #7F0000;
+    color: #7F0000; 
+    text-align: center; 
+} 
+
+.divInput select option:focus {     
+    color: #FAFAFA; 
+    background-color: #7F0000; 
+} 
+
+.divInput select:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0; 
+} 
+
+.divInput input:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0; 
+}
+
+#valEstado {
+  width: 60%; 
+  margin-right: 1rem;
+}
+
+#valNum {
+  width: 60%; 
+  margin-right: 1rem;
+}
+
+#valComp {
+  margin-right: 1rem;
+}
+  
+  /* Error and Success */
+  .form-control.success input {
+    border-color: #2ecc71;
+  }
+
+  .form-control.error input {
+    border-color: #e74c3c;
+  }
+
+  .form-control.success .divInput .sucesso {
+    /* visibility: visible; */
+    display: block;
+  }
+
+  .form-control.error .divInput .erro {
+    display: block;
+    /* visibility: visible; */
+  }
+
+  .form-control.error small {
+    /* visibility: visible; */
+    display: block;
+  }
+
+  .form-control.errsuccessor .divInput select {     
+    border-color: #2ecc71; 
+  } 
+
+  .form-control.error .divInput select {     
+    border-color: #e74c3c; 
+  } 
