@@ -1,4 +1,8 @@
+'use client'
 import { useState } from 'react';
+
+import Image from 'next/image';
+
 import { MdCheckCircle, MdError } from "react-icons/md";
 
 import IconCad from '../../../../public/icones/cadastrar.svg';
@@ -174,44 +178,46 @@ export default function CadUsuario() {
             <div>
                 <h2>Criar uma conta</h2>
             </div>
-            <form id="form" className={styles.form} onSubmit={handleSubmit}>
+            <form id="form" className={styles.form} /*onSubmit={handleSubmit}*/>
                 <div /*className={valNome}*/ id="valNome">
-                    <label for="username">Nome de usuário</label>
+                    <label className={styles.label} for="username">Nome de usuário</label>
                     <div className={styles.divInput}>
                         <input
                             type="text"
                             id="username"
                             placeholder="Digite seu nome de usuário..."
+                            className={styles.input}
                             // onChange={v => setUsu_nome(v.target.value)}
                             // value={usu_nome}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
-                    {/* <small id="nome">{errNome}</small> */}
+                    {/* <small id="nome" className={styles.small}>{errNome}</small> */}
                 </div>
 
                 <div /*className={valEmail}*/ id="valEmail">
-                    <label for="email">Email</label>
+                    <label className={styles.label} for="email">Email</label>
                     <div className={styles.divInput}>
                         <input
                             type="text"
                             id="email"
                             placeholder="Digite seu email.."
+                            className={styles.input}
                             // onChange={v => setUsu_email(v.target.value)}
                             // value={usu_email}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
-                    {/* <small>{errEmail}</small> */}
+                    {/* <small className={styles.small}>{errEmail}</small> */}
                 </div>
 
                 <div className={styles.doisItens}>
-                    <div /*className={valUf}*/ id="valEstado">
-                        <label for="estado">Estado</label>
+                    <div /*className={valUf}*/ className='valEstado' id="valEstado">
+                        <label className={styles.label} for="estado">Estado</label>
                         <div className={styles.divInput}>
-                            <select name="selUf" id="estado" /*onChange={e => setUf(e.target.value)} value={uf}*/>
+                            <select className={styles.select} name="selUf" id="estado" /*onChange={e => setUf(e.target.value)} value={uf}*/>
                                 <option selected disabled value="">Sel. estado</option>
                                 <option value="SP">SP</option>
                                 <option value="RJ">RJ</option>
@@ -220,13 +226,13 @@ export default function CadUsuario() {
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small>Campo obrigatório!</small> */}
+                        {/* <small className={styles.small}>Campo obrigatório!</small> */}
                     </div>
 
                     <div /*className={valCidade}*/ id="valCidade">
-                        <label for="cidade">Cidade</label>
+                        <label className={styles.label} for="cidade">Cidade</label>
                         <div className={styles.divInput}>
-                            <select name="selCidade" id="cidade" /*onChange={e => setCid_id(e.target.value)} value={cid_id}*/>
+                            <select className={styles.select} name="selCidade" id="cidade" /*onChange={e => setCid_id(e.target.value)} value={cid_id}*/>
                                 <option selected disabled value="0" >Selecione a cidade</option>
                                 <option value="1">Tupã</option>
                                 <option value="2">Parapuã</option>
@@ -235,128 +241,135 @@ export default function CadUsuario() {
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small>Selecione a cidade!</small> */}
+                        {/* <small className={styles.small}>Selecione a cidade!</small> */}
                     </div>
                 </div>
 
                 <div /*className={valLogradouro}*/ id="valLog">
-                    <label for="logradouro">Logradouro</label>
+                    <label className={styles.label} for="logradouro">Logradouro</label>
                     <div className={styles.divInput}>
                         <input
                             type="text"
                             id="logradouro"
-                            placeholder="Digite o endereço..."
+                            placeholder="Digite o endereço..." 
+                            className={styles.input}
                             // onChange={v => setEnd_logradouro(v.target.value)}
                             // value={end_logradouro}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
-                    {/* <small>{errLogradouro}</small> */}
+                    {/* <small className={styles.small}>{errLogradouro}</small> */}
                 </div>
 
                 <div className={styles.doisItens}>
-                    <div /*className={valNum}*/ id="valNum">
-                        <label for="num">Número</label>
+                    <div /*className={valNum}*/ className='valEstado' id="valNum">
+                        <label className={styles.label} for="num">Número</label>
                         <div className={styles.divInput}>
                             <input
                                 type="text"
                                 id="num"
-                                placeholder="nº do endereço"
+                                placeholder="nº do endereço" 
+                                className={styles.input}
                                 // onChange={v => setEnd_Num(v.target.value)}
                                 // value={end_num}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small>Campo obrigatório!</small> */}
+                        {/* <small className={styles.small}>Campo obrigatório!</small> */}
                     </div>
 
                     <div /*className={valBairro}*/ id="valBairro">
-                        <label for="bairro">Bairro</label>
+                        <label className={styles.label} for="bairro">Bairro</label>
                         <div className={styles.divInput}>
                             <input
                                 type="text"
                                 id="bairro"
-                                placeholder="Insira o nome do bairro"
+                                placeholder="Insira o nome do bairro" 
+                                className={styles.input}
                                 // onChange={v => setEnd_Bairro(v.target.value)}
                                 // value={end_bairro}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small>{errBairro}</small> */}
+                        {/* <small className={styles.small}>{errBairro}</small> */}
                     </div>
                 </div>
 
                 <div className={styles.doisItens}>
-                    <div className={styles.form-control} id="valComp">
-                        <label for="comp">Complemento</label>
+                    <div /*className={styles.formControl}*/ className='valEstado' id="valComp">
+                        <label className={styles.label} for="comp">Complemento</label>
                         <div className={styles.divInput}>
                             <input
                                 type="text"
                                 id="comp"
-                                placeholder="Complemento do endereço"
+                                placeholder="Complemento do endereço" 
+                                className={styles.input}
                                 // onChange={v => setEnd_Complemento(v.target.value)}
                                 // value={end_complemento}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small>-</small> */}
+                        {/* <small className={styles.small}>-</small> */}
                     </div>
 
                     <div /*className={valCel}*/ id="valCelular">
-                        <label for="celular">nº celular</label>
+                        <label className={styles.label} for="celular">nº celular</label>
                         <div className={styles.divInput}>
                             <input
                                 type="text"
                                 id="celular"
-                                placeholder="Insira o nº do celular"
+                                placeholder="Insira o nº do celular" 
+                                className={styles.input}
                                 // onChange={v => setCli_cel(v.target.value)}
                                 // value={cli_cel}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small>{errCel}</small> */}
+                        {/* <small className={styles.small}>{errCel}</small> */}
                     </div>
                 </div>
 
                 <div /*className={valSenha}*/ id="validaSn1">
-                    <label for="password">Senha</label>
+                    <label className={styles.label} for="password">Senha</label>
                     <div className={styles.divInput}>
                         <input
                             type="password"
                             id="password"
-                            placeholder="Digite sua senha..."
+                            placeholder="Digite sua senha..." 
+                            className={styles.input}
                             // onChange={v => setUsu_senha(v.target.value)}
                             // value={usu_senha}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
-                    {/* <small>{errSenha}</small> */}
+                    {/* <small className={styles.small}>{errSenha}</small> */}
                 </div>
 
                 <div /*className={valConfSenha}*/ id="validaSn2">
-                    <label for="password-confirmation">Confirmação de senha</label>
+                    <label className={styles.label} for="password-confirmation">Confirmação de senha</label>
                     <div className={styles.divInput}>
                         <input
                             type="password"
                             id="password-confirmation"
-                            placeholder="Digite sua senha novamente..."
+                            placeholder="Digite sua senha novamente..." 
+                            className={styles.input}
                             // onChange={v => setConfSenha(v.target.value)}
                             // value={confSenha}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
-                    {/* <small>{errConfSenha}</small> */}
+                    {/* <small className={styles.small}>{errConfSenha}</small> */}
                 </div>
 
-                <button type="submit">
-                    <img src={IconCad} alt="cadastrar" />
+                <button className={styles.button} type="submit">
+                    <Image className={styles.img} src={IconCad} alt="cadastrar" />
                     {/* <MdPersonAddAlt /> */}
                     Cadastrar
                 </button>
