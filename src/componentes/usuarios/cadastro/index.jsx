@@ -12,17 +12,18 @@ import styles from './index.module.css';
 export default function CadUsuario() {
 
     // info
-    const [usu_nome, setUsu_nome] = useState('');
-    const [usu_email, setUsu_email] = useState('');
-    const [cid_id, setCid_id] = useState('0');
-    const [end_logradouro, setEnd_logradouro] = useState('');
-    const [end_num, setEnd_Num] = useState('');
-    const [end_bairro, setEnd_Bairro] = useState('');
-    const [end_complemento, setEnd_Complemento] = useState('');
-    const [cli_cel, setCli_cel] = useState('');
-    const [usu_senha, setUsu_senha] = useState('');
-
-    const usu_tipo = 2;
+    const [usuario, setUsuario] = useState({
+        usu_nome: '', 
+        usu_email: '', 
+        cid_id: '0', 
+        end_logradouro: '', 
+        end_num: '', 
+        end_bairro: '', 
+        end_complemento: '', 
+        cli_cel: '', 
+        usu_senha: '', 
+        usu_tipo: 2
+    });
 
     // não registra no banco
     const [uf, setUf] = useState('');
@@ -184,7 +185,7 @@ export default function CadUsuario() {
                     <div className={styles.divInput}>
                         <input
                             type="text"
-                            id="username"
+                            name="usu_nome"
                             placeholder="Digite seu nome de usuário..."
                             className={styles.input}
                             // onChange={v => setUsu_nome(v.target.value)}
@@ -201,7 +202,7 @@ export default function CadUsuario() {
                     <div className={styles.divInput}>
                         <input
                             type="text"
-                            id="email"
+                            name="usu_email"
                             placeholder="Digite seu email.."
                             className={styles.input}
                             // onChange={v => setUsu_email(v.target.value)}
@@ -232,7 +233,7 @@ export default function CadUsuario() {
                     <div className={styles.formControl}>
                         <label className={styles.label} for="cidade">Cidade</label>
                         <div className={styles.divInput}>
-                            <select className={styles.select} name="selCidade" id="cidade" /*onChange={e => setCid_id(e.target.value)} value={cid_id}*/>
+                            <select className={styles.select} name="cid_id" id="cidade" /*onChange={e => setCid_id(e.target.value)} value={cid_id}*/>
                                 <option selected disabled value="0" >Selecione a cidade</option>
                                 <option value="1">Tupã</option>
                                 <option value="2">Parapuã</option>
@@ -250,7 +251,7 @@ export default function CadUsuario() {
                     <div className={styles.divInput}>
                         <input
                             type="text"
-                            id="logradouro"
+                            name="end_logradouro"
                             placeholder="Digite o endereço..." 
                             className={styles.input}
                             // onChange={v => setEnd_logradouro(v.target.value)}
@@ -268,7 +269,7 @@ export default function CadUsuario() {
                         <div className={styles.divInput}>
                             <input
                                 type="text"
-                                id="num"
+                                name="end_num"
                                 placeholder="nº do endereço" 
                                 className={styles.input}
                                 // onChange={v => setEnd_Num(v.target.value)}
@@ -285,7 +286,7 @@ export default function CadUsuario() {
                         <div className={styles.divInput}>
                             <input
                                 type="text"
-                                id="bairro"
+                                name="end_bairro"
                                 placeholder="Insira o nome do bairro" 
                                 className={styles.input}
                                 // onChange={v => setEnd_Bairro(v.target.value)}
@@ -304,7 +305,7 @@ export default function CadUsuario() {
                         <div className={styles.divInput}>
                             <input
                                 type="text"
-                                id="comp"
+                                name="end_complemento"
                                 placeholder="Complemento do endereço" 
                                 className={styles.input}
                                 // onChange={v => setEnd_Complemento(v.target.value)}
@@ -321,7 +322,7 @@ export default function CadUsuario() {
                         <div className={styles.divInput}>
                             <input
                                 type="text"
-                                id="celular"
+                                name="cli_cel"
                                 placeholder="Insira o nº do celular" 
                                 className={styles.input}
                                 // onChange={v => setCli_cel(v.target.value)}
@@ -339,7 +340,7 @@ export default function CadUsuario() {
                     <div className={styles.divInput}>
                         <input
                             type="password"
-                            id="password"
+                            name="usu_senha"
                             placeholder="Digite sua senha..." 
                             className={styles.input}
                             // onChange={v => setUsu_senha(v.target.value)}
