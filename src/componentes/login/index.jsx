@@ -73,6 +73,7 @@ function LoginUsu() {
                 <input
                     type="text"
                     id="email"
+                    className={styles.input}
                     placeholder="E-mail"
                     onChange={v => setLogin(v.target.value)}
                     value={login}
@@ -80,6 +81,7 @@ function LoginUsu() {
                 <input
                     type="password"
                     id="password"
+                    className={styles.input}
                     placeholder="Senha"
                     onChange={v => setSenha(v.target.value)}
                     value={senha}

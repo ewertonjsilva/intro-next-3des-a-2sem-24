@@ -23,7 +23,7 @@
     align-items: center;
 }
 
-.form input {
+.input {
     border: 2px solid #7F0000;
     display: flex;
     border-radius: 1rem;
@@ -34,7 +34,7 @@
     margin: 1rem;
 }
 
-.form input:focus {
+.input:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
 }

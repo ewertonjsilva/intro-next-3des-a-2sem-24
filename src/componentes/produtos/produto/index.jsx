@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 
 import carr from '../../../../public/icones/carrinho.svg';
@@ -44,7 +44,7 @@ function Produto({ produto }) {
                         value={qtd}
                     />
                     <span className={styles.spanTt}>Total R$ {total}</span>
-                    <button className={styles.button} onClick={() => handleAddItem()}>                    
+                    <button className={styles.button} /*onClick={() => handleAddItem()}*/>                    
                         <p className={styles.lblComp}>Inserir no carrinho</p>
                         <Image className={styles.imgBtn} src={carr} alt="adicionar" />
                     </button>
