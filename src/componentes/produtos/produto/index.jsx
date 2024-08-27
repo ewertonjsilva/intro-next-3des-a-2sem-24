@@ -35,17 +35,18 @@ function Produto({ produto }) {
                 <span className={styles.descricao}>{produto.prd_descricao}</span>
                 <span className={styles.valor}>{'R$ ' + produto.prd_valor}</span>
                 <div className={styles.comprar}>
-                    <span>Quantidade</span>
+                    <span className={styles.spanQtd}>Quantidade</span>
                     <input
-                        type="number"
+                        type="number" 
+                        className={styles.input}
                         min={1}
                         onChange={nvVlr => handleAtlQtdVlr(nvVlr.target.value)}
                         value={qtd}
                     />
-                    <span>Total R$ {total}</span>
-                    <button onClick={() => handleAddItem()}>                    
-                        <p>Inserir no carrinho</p>
-                        <Image src={carr} alt="adicionar" />
+                    <span className={styles.spanTt}>Total R$ {total}</span>
+                    <button className={styles.button} onClick={() => handleAddItem()}>                    
+                        <p className={styles.lblComp}>Inserir no carrinho</p>
+                        <Image className={styles.imgBtn} src={carr} alt="adicionar" />
                     </button>
                 </div>
             </div>

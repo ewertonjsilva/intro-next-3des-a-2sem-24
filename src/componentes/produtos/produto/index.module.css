@@ -1,7 +1,7 @@
 .container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
     /* border: solid 0.5rem #B71C1C; */
     margin: 1rem auto;
@@ -9,23 +9,28 @@
     padding: 1rem;
     border-radius: 2rem;
     color: #7F0000;
-    /* width: 95%; */
+    width: 100%;
     max-width: 112.8rem;
     height: 60vh;
 }
 
 .container .containerItem {
+    width: 50%;
+    height: 30rem;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 2rem;
+    margin-bottom: 16px;
 }
 
 .container .containerItem .imagemProd {
-    max-width: 100%;
-    width: auto;
+    object-fit: fill; /* cover */
+    width: 80%;
+    height: 100%;
     border-radius: 2rem;
-    max-height: 60vh;
 }
 
 .container .containerItem .titulo {
@@ -53,16 +58,17 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
+    width: 100%;
 }
 
-.container span {
+.spanQtd {
     display: block;
     margin: 1rem;
     text-align: center;
 }
 
-.container .containerItem .comprar span {
+.spanTt {
     font-size: 2rem;
     height: 2.5rem;
     display: flex;
@@ -71,7 +77,7 @@
     border: solid #FAFAFA 0.2rem;
 }
 
-.container .containerItem .comprar input {
+.input {
     height: 2.5rem;
     width: 4rem;
     border: solid #7F0000 0.1rem;
@@ -80,7 +86,7 @@
     text-align: center;
 }
 
-.container .containerItem .comprar button {
+.button {
     height: 5rem;
     display: flex;
     flex-wrap: wrap;
@@ -96,16 +102,16 @@
     font-size: 1.6rem;
 }
 
-.container .containerItem .comprar button:hover {
+.button:hover {
     background-color: #F05545;
 }
 
-.container .containerItem .comprar p {
+.lblComp {
     width: 50%;
 }
 
 
-.container .containerItem .comprar button img {
+.imgBtn {
     height: 4rem;
     width: 3rem;
 
@@ -119,5 +125,15 @@
 
     .imagemProd {
         max-height: none;
+    }
+
+    .button {
+        width: 20rem;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .container .containerItem .comprar {
+        flex-direction: column;
     }
 }
