@@ -22,12 +22,14 @@ export default function CadUsuario() {
         end_complemento: '', 
         cli_cel: '', 
         usu_senha: '', 
+        uf: '', 
+        confSenha: '', 
         usu_tipo: 2
     });
 
-    // não registra no banco
-    const [uf, setUf] = useState('');
-    const [confSenha, setConfSenha] = useState('');
+    const handleChange = (e) => {
+        setUsuario(prev => ({...prev, [e.target.name]: e.target.value}));
+    }
 
     // validações
     // const [valNome, setValNome] = useState('form-control');
@@ -173,6 +175,8 @@ export default function CadUsuario() {
     //     );
     // }
 
+    // console.log(usuario);
+
     return (
 
         <div className={styles.containerCadUsu}>
@@ -189,6 +193,7 @@ export default function CadUsuario() {
                             placeholder="Digite seu nome de usuário..."
                             className={styles.input}
                             // onChange={v => setUsu_nome(v.target.value)}
+                            onChange={handleChange}
                             // value={usu_nome}
                         />
                         <MdCheckCircle className={styles.sucesso} />
@@ -205,7 +210,7 @@ export default function CadUsuario() {
                             name="usu_email"
                             placeholder="Digite seu email.."
                             className={styles.input}
-                            // onChange={v => setUsu_email(v.target.value)}
+                            onChange={handleChange}
                             // value={usu_email}
                         />
                         <MdCheckCircle className={styles.sucesso} />
@@ -218,7 +223,7 @@ export default function CadUsuario() {
                     <div className={styles.formControl + ' ' + styles.valEstado} id="valEstado">
                         <label className={styles.label} for="estado">Estado</label>
                         <div className={styles.divInput}>
-                            <select className={styles.select} name="selUf" id="estado" /*onChange={e => setUf(e.target.value)} value={uf}*/>
+                            <select className={styles.select} name="uf" id="estado" onChange={handleChange} /*value={uf}*/>
                                 <option selected disabled value="">Sel. estado</option>
                                 <option value="SP">SP</option>
                                 <option value="RJ">RJ</option>
@@ -233,7 +238,7 @@ export default function CadUsuario() {
                     <div className={styles.formControl}>
                         <label className={styles.label} for="cidade">Cidade</label>
                         <div className={styles.divInput}>
-                            <select className={styles.select} name="cid_id" id="cidade" /*onChange={e => setCid_id(e.target.value)} value={cid_id}*/>
+                            <select className={styles.select} name="cid_id" id="cidade" onChange={handleChange} /*value={cid_id}*/>
                                 <option selected disabled value="0" >Selecione a cidade</option>
                                 <option value="1">Tupã</option>
                                 <option value="2">Parapuã</option>
@@ -254,7 +259,7 @@ export default function CadUsuario() {
                             name="end_logradouro"
                             placeholder="Digite o endereço..." 
                             className={styles.input}
-                            // onChange={v => setEnd_logradouro(v.target.value)}
+                            onChange={handleChange}
                             // value={end_logradouro}
                         />
                         <MdCheckCircle className={styles.sucesso} />
@@ -272,7 +277,7 @@ export default function CadUsuario() {
                                 name="end_num"
                                 placeholder="nº do endereço" 
                                 className={styles.input}
-                                // onChange={v => setEnd_Num(v.target.value)}
+                                onChange={handleChange}
                                 // value={end_num}
                             />
                             <MdCheckCircle className={styles.sucesso} />
@@ -289,7 +294,7 @@ export default function CadUsuario() {
                                 name="end_bairro"
                                 placeholder="Insira o nome do bairro" 
                                 className={styles.input}
-                                // onChange={v => setEnd_Bairro(v.target.value)}
+                                onChange={handleChange}
                                 // value={end_bairro}
                             />
                             <MdCheckCircle className={styles.sucesso} />
@@ -308,7 +313,7 @@ export default function CadUsuario() {
                                 name="end_complemento"
                                 placeholder="Complemento do endereço" 
                                 className={styles.input}
-                                // onChange={v => setEnd_Complemento(v.target.value)}
+                                onChange={handleChange}
                                 // value={end_complemento}
                             />
                             <MdCheckCircle className={styles.sucesso} />
@@ -325,7 +330,7 @@ export default function CadUsuario() {
                                 name="cli_cel"
                                 placeholder="Insira o nº do celular" 
                                 className={styles.input}
-                                // onChange={v => setCli_cel(v.target.value)}
+                                onChange={handleChange}
                                 // value={cli_cel}
                             />
                             <MdCheckCircle className={styles.sucesso} />
@@ -343,7 +348,7 @@ export default function CadUsuario() {
                             name="usu_senha"
                             placeholder="Digite sua senha..." 
                             className={styles.input}
-                            // onChange={v => setUsu_senha(v.target.value)}
+                            onChange={handleChange}
                             // value={usu_senha}
                         />
                         <MdCheckCircle className={styles.sucesso} />
@@ -357,10 +362,10 @@ export default function CadUsuario() {
                     <div className={styles.divInput}>
                         <input
                             type="password"
-                            id="password-confirmation"
+                            name="confSenha"
                             placeholder="Digite sua senha novamente..." 
                             className={styles.input}
-                            // onChange={v => setConfSenha(v.target.value)}
+                            onChange={handleChange}
                             // value={confSenha}
                         />
                         <MdCheckCircle className={styles.sucesso} />
