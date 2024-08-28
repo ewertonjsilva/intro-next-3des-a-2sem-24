@@ -65,5 +65,5 @@ export let produtos = [
         prd_descricao: 'Um sorvete aleatório',
         prd_unidade: 'taça',
         img_tp_prod: ic_sobremesa
-    }
+    },
 ]
