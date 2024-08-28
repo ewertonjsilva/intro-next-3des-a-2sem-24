@@ -67,3 +67,27 @@ export let produtos = [
         img_tp_prod: ic_sobremesa
     },
 ]
+
+export let estados = [
+    {
+        uf: 'SP', 
+    }, 
+    {
+        uf: 'RJ'
+    }
+]
+
+export let cidades = [
+    {
+        cid_id: 1, 
+        cid_nome: 'Tupã'
+    }, 
+    {
+        cid_id: 2, 
+        cid_nome: 'Parapuã'
+    }, 
+    {
+        cid_id: 3, 
+        cid_nome: 'Marília'
+    }, 
+]

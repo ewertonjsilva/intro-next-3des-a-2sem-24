@@ -9,6 +9,8 @@ import IconCad from '../../../../public/icones/cadastrar.svg';
 
 import styles from './index.module.css';
 
+import { estados, cidades } from '../../../mocks/dados';
+
 export default function CadUsuario() {
 
     // info
@@ -22,44 +24,47 @@ export default function CadUsuario() {
         end_complemento: '',
         cli_cel: '',
         usu_senha: '',
-        uf: '',
+        uf: '0',
         confSenha: '',
         usu_tipo: 2
     });
 
-
+    const valDefault = styles.formControl;
+    const valSucesso = styles.formControl + ' ' + styles.success;
+    const valErro = styles.formControl + ' ' + styles.error;
+    
     // validação
     const [valida, setValida] = useState({
         nome: {
-            validado: false,
+            validado: valDefault,
             mensagem: []
         },
         email: {
-            validado: false,
+            validado: valDefault,
             mensagem: []
         },
         cidade: {
-            validado: false,
+            validado: valDefault,
             mensagem: []
         },
         logradouro: {
-            validado: false,
+            validado: valDefault,
             mensagem: []
         },
         numero: {
-            validado: false,
+            validado: valDefault,
             mensagem: []
         },
         bairro: {
-            validado: false,
+            validado: valDefault,
             mensagem: []
         },
         celular: {
-            validado: false,
+            validado: valDefault,
             mensagem: []
         },
         senha: {
-            validado: false,
+            validado: valDefault,
             mensagem: []
         }
     });
@@ -70,18 +75,18 @@ export default function CadUsuario() {
 
     function validaNome() {
         let novoNomeValido = {
-            validado: true, // ou false, conforme necessário
+            validado: valSucesso, // ou false, conforme necessário
             mensagem: [] // ou outra mensagem que você quiser
         };
 
-        if (usu_nome === '') {
-            novoNomeValido.validado = false;
+        if (usuario.usu_nome === '') {
+            novoNomeValido.validado = valErro;
             novoNomeValido.mensagem.push('O nome do usuário é obrigatório');
-        } else if (usu_nome.length < 5) {
-            novoNomeValido.validado = false;
+        } else if (usuario.usu_nome.length < 5) {
+            novoNomeValido.validado = valErro;
             novoNomeValido.mensagem.push('Insira o nome completo do usuário');
-        }
-
+        }        
+        
         setValida(prevState => ({
             ...prevState, // mantém os valores anteriores
             nome: novoNomeValido // atualiza apenas o campo 'nome'
@@ -107,9 +112,9 @@ export default function CadUsuario() {
     // const [valConfSenha, setValConfSenha] = useState('form-control');
     // const [errConfSenha, setErrConfSenha] = useState('');
 
-    function handleSubmit(event) {
-        // valida();
-        event.preventDefault();
+    function handleSubmit(event) {     
+        validaNome();               
+        event.preventDefault();        
     }
 
     // function valida() {
@@ -232,17 +237,15 @@ export default function CadUsuario() {
     //     );
     // }
 
-    // console.log(usuario);
-
     return (
 
         <div className={styles.containerCadUsu}>
             <div>
                 <h2>Criar uma conta</h2>
             </div>
-            <form id="form" className={styles.form} /*onSubmit={handleSubmit}*/>
-                <div className={styles.formControl} id="valNome">
-                    <label className={styles.label} for="username">Nome de usuário</label>
+            <form id="form" className={styles.form} onSubmit={handleSubmit}>
+                <div className={valida.nome.validado} id="valNome">
+                    <label className={styles.label}>Nome de usuário</label>
                     <div className={styles.divInput}>
                         <input
                             type="text"
@@ -256,11 +259,14 @@ export default function CadUsuario() {
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
+                    {
+                        valida.nome.mensagem.map(mens => <small key={mens} id="nome" className={styles.small}>{mens}</small>)
+                    }
                     {/* <small id="nome" className={styles.small}>{errNome}</small> */}
                 </div>
 
                 <div className={styles.formControl} id="valEmail">
-                    <label className={styles.label} for="email">Email</label>
+                    <label className={styles.label}>Email</label>
                     <div className={styles.divInput}>
                         <input
                             type="text"
@@ -273,18 +279,21 @@ export default function CadUsuario() {
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
+
                     {/* <small className={styles.small}>{errEmail}</small> */}
                 </div>
 
                 <div className={styles.doisItens}>
                     <div className={styles.formControl + ' ' + styles.valEstado} id="valEstado">
-                        <label className={styles.label} for="estado">Estado</label>
+                        <label className={styles.label}>Estado</label>
                         <div className={styles.divInput}>
-                            <select className={styles.select} name="uf" id="estado" onChange={handleChange} /*value={uf}*/>
-                                <option selected disabled value="">Sel. estado</option>
-                                <option value="SP">SP</option>
-                                <option value="RJ">RJ</option>
-                                <option value="PR">PR</option>
+                            <select className={styles.select} name="uf" id="estado" onChange={handleChange} defaultValue={usuario.uf}>
+                                <option disabled value="0">Sel. estado</option>
+                                {
+                                    estados.map(uf => (
+                                        <option key={uf.uf} value={uf.uf}>{uf.uf}</option>
+                                    ))
+                                }
                             </select>
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -293,13 +302,15 @@ export default function CadUsuario() {
                     </div>
 
                     <div className={styles.formControl}>
-                        <label className={styles.label} for="cidade">Cidade</label>
+                        <label className={styles.label}>Cidade</label>
                         <div className={styles.divInput}>
-                            <select className={styles.select} name="cid_id" id="cidade" onChange={handleChange} /*value={cid_id}*/>
-                                <option selected disabled value="0" >Selecione a cidade</option>
-                                <option value="1">Tupã</option>
-                                <option value="2">Parapuã</option>
-                                <option value="3">Marília</option>
+                            <select className={styles.select} name="cid_id" id="cidade" onChange={handleChange} defaultValue={usuario.cid_id}>
+                                <option disabled value="0">Selecione a cidade</option>
+                                {
+                                    cidades.map(cid => (
+                                        <option key={cid.cid_id} value={cid.cid_id}>{cid.cid_nome}</option>
+                                    ))
+                                }
                             </select>
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -309,7 +320,7 @@ export default function CadUsuario() {
                 </div>
 
                 <div className={styles.formControl} id="valLog">
-                    <label className={styles.label} for="logradouro">Logradouro</label>
+                    <label className={styles.label}>Logradouro</label>
                     <div className={styles.divInput}>
                         <input
                             type="text"
@@ -327,7 +338,7 @@ export default function CadUsuario() {
 
                 <div className={styles.doisItens}>
                     <div className={styles.formControl + ' ' + styles.valEstado} id="valNum">
-                        <label className={styles.label} for="num">Número</label>
+                        <label className={styles.label}>Número</label>
                         <div className={styles.divInput}>
                             <input
                                 type="text"
@@ -344,7 +355,7 @@ export default function CadUsuario() {
                     </div>
 
                     <div className={styles.formControl} id="valBairro">
-                        <label className={styles.label} for="bairro">Bairro</label>
+                        <label className={styles.label}>Bairro</label>
                         <div className={styles.divInput}>
                             <input
                                 type="text"
@@ -363,7 +374,7 @@ export default function CadUsuario() {
 
                 <div className={styles.doisItens}>
                     <div className={styles.formControl + ' ' + styles.valEstado} id="valComp">
-                        <label className={styles.label} for="comp">Complemento</label>
+                        <label className={styles.label}>Complemento</label>
                         <div className={styles.divInput}>
                             <input
                                 type="text"
@@ -380,7 +391,7 @@ export default function CadUsuario() {
                     </div>
 
                     <div className={styles.formControl} id="valCelular">
-                        <label className={styles.label} for="celular">nº celular</label>
+                        <label className={styles.label}>nº celular</label>
                         <div className={styles.divInput}>
                             <input
                                 type="text"
@@ -398,7 +409,7 @@ export default function CadUsuario() {
                 </div>
 
                 <div className={styles.formControl} id="validaSn1">
-                    <label className={styles.label} for="password">Senha</label>
+                    <label className={styles.label}>Senha</label>
                     <div className={styles.divInput}>
                         <input
                             type="password"
@@ -415,7 +426,7 @@ export default function CadUsuario() {
                 </div>
 
                 <div className={styles.formControl} id="validaSn2">
-                    <label className={styles.label} for="password-confirmation">Confirmação de senha</label>
+                    <label className={styles.label}>Confirmação de senha</label>
                     <div className={styles.divInput}>
                         <input
                             type="password"
