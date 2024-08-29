@@ -70,6 +70,7 @@
   /* display: none; */
   color: #e74c3c;
   font-size: 1.6rem;
+  margin-top: 0.5rem;
 }
 
 .label {
@@ -168,7 +169,7 @@
   display: block;
 }
 
-.formControl.errsuccessor .divInput select {
+.formControl.success .divInput select {
   border-color: #2ecc71;
 }
 

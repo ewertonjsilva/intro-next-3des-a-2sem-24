@@ -32,7 +32,7 @@ export default function CadUsuario() {
     const valDefault = styles.formControl;
     const valSucesso = styles.formControl + ' ' + styles.success;
     const valErro = styles.formControl + ' ' + styles.error;
-    
+
     // validação
     const [valida, setValida] = useState({
         nome: {
@@ -40,6 +40,10 @@ export default function CadUsuario() {
             mensagem: []
         },
         email: {
+            validado: valDefault,
+            mensagem: []
+        },
+        uf: {
             validado: valDefault,
             mensagem: []
         },
@@ -59,6 +63,10 @@ export default function CadUsuario() {
             validado: valDefault,
             mensagem: []
         },
+        complemento: {
+            validado: valDefault,
+            mensagem: []
+        },
         celular: {
             validado: valDefault,
             mensagem: []
@@ -74,135 +82,230 @@ export default function CadUsuario() {
     }
 
     function validaNome() {
-        
-        let novoNomeValido = {
-            validado: valSucesso, // ou false, conforme necessário
-            mensagem: [] // ou outra mensagem que você quiser
+
+        let objTemp = {
+            validado: valSucesso, // css referente ao estado de validação
+            mensagem: [] // array de mensagens de validação
         };
 
         if (usuario.usu_nome === '') {
-            novoNomeValido.validado = valErro;
-            novoNomeValido.mensagem.push('O nome do usuário é obrigatório');
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('O nome do usuário é obrigatório');
         } else if (usuario.usu_nome.length < 5) {
-            novoNomeValido.validado = valErro;
-            novoNomeValido.mensagem.push('Insira o nome completo do usuário');
-        }        
-        console.log(novoNomeValido);
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('Insira o nome completo do usuário');
+        }
+
         setValida(prevState => ({
             ...prevState, // mantém os valores anteriores
-            nome: novoNomeValido // atualiza apenas o campo 'nome'
+            nome: objTemp // atualiza apenas o campo 'nome'
         }));
 
-        const testeResult = novoNomeValido.mensagem.length === 0 ? 1 : 0;
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
         return testeResult;
     }
-    
+
     function checkEmail(email) {
         return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             email
         );
     }
 
+    function validaEmail() {
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        if (usuario.usu_email === "") {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('O e-mail do usuário é obrigatório');
+        } else if (!checkEmail(usuario.usu_email)) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('Insira um e-mail válido');
+        }
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            email: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+
+    }
+
+    function validaUf() {
+
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        if (usuario.uf == 0) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('Selecione o estado');
+        }
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            uf: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+    }
+
+    function validaCidade() {
+
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        if (usuario.cid_id == 0) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('Selecione a cidade');
+        }
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            cidade: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+    }
+
+    function validaLogradouro() {
+
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        if (usuario.end_logradouro === '') {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('O endereço é um campo obrigatório');
+        } else if (usuario.end_logradouro.length < 5) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('Insira o endereço completo');
+        }
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            logradouro: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+    }
+
+    function validaNumero() {
+
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        if (usuario.end_num === '') {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('O número do imóvel é um campo obrigatório');
+        }
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            numero: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+    }
+
+    function validaBairro() {
+
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        if (usuario.end_bairro === '') {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('É necessário inserir o nome do bairro');
+        } else if (usuario.end_bairro.length < 4) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('Insira o nome completo do bairro');
+        }
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            bairro: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+    }
+
+    function validaComplemento() {
+
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            complemento: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+    }
+
+    function validaCelular() {
+
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        if (usuario.cli_cel === '') {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('O nº do celular é obrigatório');
+        } else if (cli_cel.length < 11) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('O número do celular deve ter pelo menos 11 dígitos');
+        }
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            celular: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+    }
 
 
-    // validações
-    // const [valNome, setValNome] = useState('form-control');
-    // const [errNome, setErrNome] = useState('');
-    // const [valEmail, setValEmail] = useState('form-control');
-    // const [errEmail, setErrEmail] = useState('');
-    // const [valUf, setValUf] = useState('form-control');
-    // const [valCidade, setValCidade] = useState('form-control');
-    // const [valLogradouro, setValLogradouro] = useState('form-control');
-    // const [errLogradouro, setErrLogradouro] = useState('');
-    // const [valNum, setValNum] = useState('form-control');
-    // const [valBairro, setValBairro] = useState('form-control');
-    // const [errBairro, setErrBairro] = useState('');
-    // const [valCel, setValCel] = useState('form-control');
-    // const [errCel, setErrCel] = useState('');
-    // const [valSenha, setValSenha] = useState('form-control');
-    // const [errSenha, setErrSenha] = useState('');
-    // const [valConfSenha, setValConfSenha] = useState('form-control');
-    // const [errConfSenha, setErrConfSenha] = useState('');
-
-    function handleSubmit(event) {     
+    function handleSubmit(event) {
         let itensValidados = 0;
-        itensValidados = validaNome(); 
+        itensValidados += validaNome();
+        itensValidados += validaEmail();
+        itensValidados += validaUf();
+        itensValidados += validaCidade();
+        itensValidados += validaLogradouro();
+        itensValidados += validaNumero();
+        itensValidados += validaBairro();
+        itensValidados += validaComplemento();
+        itensValidados += validaCelular();
         // salvar quando atingir o número de itens a serem validados
-        event.preventDefault();        
+        alert(itensValidados)
+        event.preventDefault();
     }
 
     // function valida() {
 
 
-    //     if (usu_email === "") {
-    //         setValEmail('form-control error');
-    //         setErrEmail('O e-mail do usuário é obrigatório');
-    //         validado = false;
-    //     } else if (!checkEmail(usu_email)) {
-    //         setValEmail('form-control error');
-    //         setErrEmail('Insira um e-mail válido');
-    //         validado = false;
-    //     } else {
-    //         setValEmail('form-control success');
-    //     }
-
-    //     if (uf === '') {
-    //         setValUf('form-control error');
-    //         validado = false;
-    //     } else {
-    //         setValUf('form-control success');
-    //     }
-
-    //     if (cid_id === '0') {
-    //         setValCidade('form-control error');
-    //         validado = false;
-    //     } else {
-    //         setValCidade('form-control success');
-    //     }
-
-
-    //     if (end_logradouro === '') {
-    //         setValLogradouro('form-control error');
-    //         setErrLogradouro('A identifivação do endereço é obrigatória');
-    //         validado = false;
-    //     } else if (end_logradouro.length < 5) {
-    //         setValLogradouro('form-control error');
-    //         setErrLogradouro('Insira o endereço completo');
-    //         validado = false;
-    //     } else {
-    //         setValLogradouro('form-control success')
-    //     }
-
-    //     if (end_num === "") {
-    //         setValNum('form-control error');
-    //         validado = false;
-    //     } else {
-    //         setValNum('form-control success');
-    //     }
-
-    //     if (end_bairro === '') {
-    //         setValBairro('form-control error');
-    //         setErrBairro('É necessário inserir o nome do bairro');
-    //         validado = false;
-    //     } else if (end_bairro.length < 4) {
-    //         setValBairro('form-control error');
-    //         setErrBairro('Insira o nome completo do bairro');
-    //         validado = false;
-    //     } else {
-    //         setValBairro('form-control success')
-    //     }
-
-    //     if (cli_cel === '') {
-    //         setValCel('form-control error');
-    //         setErrCel('O nº do celular é obrigatório');
-    //         validado = false;
-    //     } else if (cli_cel.length < 11) {
-    //         setValCel('form-control error');
-    //         setErrCel('O número do celular deve ter pelo menos 11 dígitos');
-    //         validado = false;
-    //     } else {
-    //         setValCel('form-control success')
-    //     }
 
     //     if (usu_senha === '') {
     //         setValSenha('form-control error');
@@ -263,7 +366,7 @@ export default function CadUsuario() {
                     {/* <small id="nome" className={styles.small}>{errNome}</small> */}
                 </div>
 
-                <div className={styles.formControl} id="valEmail">
+                <div className={valida.email.validado} id="valEmail">
                     <label className={styles.label}>Email</label>
                     <div className={styles.divInput}>
                         <input
@@ -277,12 +380,13 @@ export default function CadUsuario() {
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
-
-                    {/* <small className={styles.small}>{errEmail}</small> */}
+                    {
+                        valida.email.mensagem.map(mens => <small key={mens} id="email" className={styles.small}>{mens}</small>)
+                    }
                 </div>
 
                 <div className={styles.doisItens}>
-                    <div className={styles.formControl + ' ' + styles.valEstado} id="valEstado">
+                    <div className={valida.uf.validado + ' ' + styles.valEstado} id="valEstado">
                         <label className={styles.label}>Estado</label>
                         <div className={styles.divInput}>
                             <select className={styles.select} name="uf" id="estado" onChange={handleChange} defaultValue={usuario.uf}>
@@ -296,10 +400,12 @@ export default function CadUsuario() {
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small className={styles.small}>Campo obrigatório!</small> */}
+                        {
+                            valida.uf.mensagem.map(mens => <small key={mens} id="uf" className={styles.small}>{mens}</small>)
+                        }
                     </div>
 
-                    <div className={styles.formControl}>
+                    <div className={valida.cidade.validado}>
                         <label className={styles.label}>Cidade</label>
                         <div className={styles.divInput}>
                             <select className={styles.select} name="cid_id" id="cidade" onChange={handleChange} defaultValue={usuario.cid_id}>
@@ -313,11 +419,13 @@ export default function CadUsuario() {
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small className={styles.small}>Selecione a cidade!</small> */}
+                        {
+                            valida.cidade.mensagem.map(mens => <small key={mens} id="cidade" className={styles.small}>{mens}</small>)
+                        }
                     </div>
                 </div>
 
-                <div className={styles.formControl} id="valLog">
+                <div className={valida.logradouro.validado} id="valLog">
                     <label className={styles.label}>Logradouro</label>
                     <div className={styles.divInput}>
                         <input
@@ -331,11 +439,13 @@ export default function CadUsuario() {
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
-                    {/* <small className={styles.small}>{errLogradouro}</small> */}
+                    {
+                        valida.logradouro.mensagem.map(mens => <small key={mens} id="logradouro" className={styles.small}>{mens}</small>)
+                    }
                 </div>
 
                 <div className={styles.doisItens}>
-                    <div className={styles.formControl + ' ' + styles.valEstado} id="valNum">
+                    <div className={valida.numero.validado + ' ' + styles.valNum} id="valNum">
                         <label className={styles.label}>Número</label>
                         <div className={styles.divInput}>
                             <input
@@ -349,10 +459,12 @@ export default function CadUsuario() {
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small className={styles.small}>Campo obrigatório!</small> */}
+                        {
+                            valida.numero.mensagem.map(mens => <small key={mens} id="logradouro" className={styles.small}>{mens}</small>)
+                        }
                     </div>
 
-                    <div className={styles.formControl} id="valBairro">
+                    <div className={valida.bairro.validado} id="valBairro">
                         <label className={styles.label}>Bairro</label>
                         <div className={styles.divInput}>
                             <input
@@ -366,12 +478,14 @@ export default function CadUsuario() {
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small className={styles.small}>{errBairro}</small> */}
+                        {
+                            valida.bairro.mensagem.map(mens => <small key={mens} id="logradouro" className={styles.small}>{mens}</small>)
+                        }
                     </div>
                 </div>
 
                 <div className={styles.doisItens}>
-                    <div className={styles.formControl + ' ' + styles.valEstado} id="valComp">
+                    <div className={valida.complemento.validado + ' ' + styles.valComp} id="valComp">
                         <label className={styles.label}>Complemento</label>
                         <div className={styles.divInput}>
                             <input
@@ -385,10 +499,12 @@ export default function CadUsuario() {
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small className={styles.small}>-</small> */}
+                        {
+                            valida.complemento.mensagem.map(mens => <small key={mens} id="complemento" className={styles.small}>{mens}</small>)
+                        }
                     </div>
 
-                    <div className={styles.formControl} id="valCelular">
+                    <div className={valida.celular.validado} id="valCelular">
                         <label className={styles.label}>nº celular</label>
                         <div className={styles.divInput}>
                             <input
@@ -402,7 +518,9 @@ export default function CadUsuario() {
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
                         </div>
-                        {/* <small className={styles.small}>{errCel}</small> */}
+                        {
+                            valida.celular.mensagem.map(mens => <small key={mens} id="celular" className={styles.small}>{mens}</small>)
+                        }
                     </div>
                 </div>
 
