@@ -74,6 +74,7 @@ export default function CadUsuario() {
     }
 
     function validaNome() {
+        
         let novoNomeValido = {
             validado: valSucesso, // ou false, conforme necessário
             mensagem: [] // ou outra mensagem que você quiser
@@ -86,12 +87,23 @@ export default function CadUsuario() {
             novoNomeValido.validado = valErro;
             novoNomeValido.mensagem.push('Insira o nome completo do usuário');
         }        
-        
+        console.log(novoNomeValido);
         setValida(prevState => ({
             ...prevState, // mantém os valores anteriores
             nome: novoNomeValido // atualiza apenas o campo 'nome'
         }));
+
+        const testeResult = novoNomeValido.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
     }
+    
+    function checkEmail(email) {
+        return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+            email
+        );
+    }
+
+
 
     // validações
     // const [valNome, setValNome] = useState('form-control');
@@ -113,24 +125,14 @@ export default function CadUsuario() {
     // const [errConfSenha, setErrConfSenha] = useState('');
 
     function handleSubmit(event) {     
-        validaNome();               
+        let itensValidados = 0;
+        itensValidados = validaNome(); 
+        // salvar quando atingir o número de itens a serem validados
         event.preventDefault();        
     }
 
     // function valida() {
-    //     let validado = true;
 
-    // if (usu_nome === '') {
-    //     setValNome('form-control error');
-    //     setErrNome('O nome do usuário é obrigatório');
-    //     validado = false;
-    // } else if (usu_nome.length < 5) {
-    //     setValNome('form-control error');
-    //     setErrNome('Insira o nome completo do usuário');
-    //     validado = false;
-    // } else {
-    //     setValNome('form-control success')
-    // }
 
     //     if (usu_email === "") {
     //         setValEmail('form-control error');
@@ -231,11 +233,7 @@ export default function CadUsuario() {
     // }
     // }
 
-    // function checkEmail(email) {
-    //     return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-    //         email
-    //     );
-    // }
+
 
     return (
 
