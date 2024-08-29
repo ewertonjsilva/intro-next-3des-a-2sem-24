@@ -74,6 +74,10 @@ export default function CadUsuario() {
         senha: {
             validado: valDefault,
             mensagem: []
+        },
+        confSenha: {
+            validado: valDefault,
+            mensagem: []
         }
     });
 
@@ -272,7 +276,7 @@ export default function CadUsuario() {
         if (usuario.cli_cel === '') {
             objTemp.validado = valErro;
             objTemp.mensagem.push('O nº do celular é obrigatório');
-        } else if (cli_cel.length < 11) {
+        } else if (usuario.cli_cel.length < 11) {
             objTemp.validado = valErro;
             objTemp.mensagem.push('O número do celular deve ter pelo menos 11 dígitos');
         }
@@ -280,6 +284,54 @@ export default function CadUsuario() {
         setValida(prevState => ({
             ...prevState, // mantém os valores anteriores
             celular: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+    }
+
+    function validaSenha() {
+
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        if (usuario.usu_senha === '') {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('O preenchimento da senha é obrigatório');
+        } else if (usuario.usu_senha < 3) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('A senha deve ter pelo menos 3 caracteres');
+        }
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            senha: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+    }
+
+    function validaConfSenha() {
+
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        if (usuario.confSenha === '') {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('A confirmação da senha é obrigatória');
+        } else if (usuario.confSenha !== usuario.usu_senha) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('A senha e a confirmação devem ser iguais');
+        }
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            confSenha: objTemp // atualiza apenas o campo 'nome'
         }));
 
         const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
@@ -298,38 +350,17 @@ export default function CadUsuario() {
         itensValidados += validaBairro();
         itensValidados += validaComplemento();
         itensValidados += validaCelular();
+        itensValidados += validaSenha();
+        itensValidados += validaConfSenha();
         // salvar quando atingir o número de itens a serem validados
         alert(itensValidados)
+        if (itensValidados === 11) {
+            alert('chama api')
+        }
         event.preventDefault();
     }
 
     // function valida() {
-
-
-
-    //     if (usu_senha === '') {
-    //         setValSenha('form-control error');
-    //         setErrSenha('O preenchimento da senha é obrigatório');
-    //         validado = false;
-    //     } else if (usu_senha.length < 3) {
-    //         setValSenha('form-control error');
-    //         setErrSenha('A senha deve ter pelo menos 3 caracteres');
-    //         validado = false;
-    //     } else {
-    //         setValSenha('form-control success')
-    //     }
-
-    //     if (confSenha === '') {
-    //         setValConfSenha('form-control error');
-    //         setErrConfSenha('A confirmação da senha é obrigatória');
-    //         validado = false;
-    //     } else if (confSenha !== usu_senha) {
-    //         setValConfSenha('form-control error');
-    //         setErrConfSenha('A senha e a confirmação devem ser iguais');
-    //         validado = false;
-    //     } else {
-    //         setValConfSenha('form-control success')
-    //     }
 
     // if (validado === 10) {
     //     console.log("O formulário está 100% válido!");
@@ -355,7 +386,7 @@ export default function CadUsuario() {
                             className={styles.input}
                             // onChange={v => setUsu_nome(v.target.value)}
                             onChange={handleChange}
-                        // value={usu_nome}
+                            // value={usu_nome}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
@@ -375,7 +406,7 @@ export default function CadUsuario() {
                             placeholder="Digite seu email.."
                             className={styles.input}
                             onChange={handleChange}
-                        // value={usu_email}
+                            // value={usu_email}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
@@ -434,7 +465,7 @@ export default function CadUsuario() {
                             placeholder="Digite o endereço..."
                             className={styles.input}
                             onChange={handleChange}
-                        // value={end_logradouro}
+                            // value={end_logradouro}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
@@ -454,7 +485,7 @@ export default function CadUsuario() {
                                 placeholder="nº do endereço"
                                 className={styles.input}
                                 onChange={handleChange}
-                            // value={end_num}
+                                // value={end_num}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -473,7 +504,7 @@ export default function CadUsuario() {
                                 placeholder="Insira o nome do bairro"
                                 className={styles.input}
                                 onChange={handleChange}
-                            // value={end_bairro}
+                                // value={end_bairro}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -494,7 +525,7 @@ export default function CadUsuario() {
                                 placeholder="Complemento do endereço"
                                 className={styles.input}
                                 onChange={handleChange}
-                            // value={end_complemento}
+                                // value={end_complemento}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -513,7 +544,7 @@ export default function CadUsuario() {
                                 placeholder="Insira o nº do celular"
                                 className={styles.input}
                                 onChange={handleChange}
-                            // value={cli_cel}
+                                // value={cli_cel}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -524,7 +555,7 @@ export default function CadUsuario() {
                     </div>
                 </div>
 
-                <div className={styles.formControl} id="validaSn1">
+                <div className={valida.senha.validado} id="validaSn1">
                     <label className={styles.label}>Senha</label>
                     <div className={styles.divInput}>
                         <input
@@ -533,15 +564,17 @@ export default function CadUsuario() {
                             placeholder="Digite sua senha..."
                             className={styles.input}
                             onChange={handleChange}
-                        // value={usu_senha}
+                            // value={usu_senha}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
-                    {/* <small className={styles.small}>{errSenha}</small> */}
+                    {
+                        valida.senha.mensagem.map(mens => <small key={mens} id="senha" className={styles.small}>{mens}</small>)
+                    }
                 </div>
 
-                <div className={styles.formControl} id="validaSn2">
+                <div className={valida.confSenha.validado} id="validaSn2">
                     <label className={styles.label}>Confirmação de senha</label>
                     <div className={styles.divInput}>
                         <input
@@ -550,12 +583,14 @@ export default function CadUsuario() {
                             placeholder="Digite sua senha novamente..."
                             className={styles.input}
                             onChange={handleChange}
-                        // value={confSenha}
+                            // value={confSenha}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
                     </div>
-                    {/* <small className={styles.small}>{errConfSenha}</small> */}
+                    {
+                        valida.confSenha.mensagem.map(mens => <small key={mens} id="confSenha" className={styles.small}>{mens}</small>)
+                    }
                 </div>
 
                 <button className={styles.button} type="submit">
