@@ -353,21 +353,12 @@ export default function CadUsuario() {
         itensValidados += validaSenha();
         itensValidados += validaConfSenha();
         // salvar quando atingir o número de itens a serem validados
-        alert(itensValidados)
+        // alert(itensValidados);
         if (itensValidados === 11) {
             alert('chama api')
         }
         event.preventDefault();
     }
-
-    // function valida() {
-
-    // if (validado === 10) {
-    //     console.log("O formulário está 100% válido!");
-    // }
-    // }
-
-
 
     return (
 

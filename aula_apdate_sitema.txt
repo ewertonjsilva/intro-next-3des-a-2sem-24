@@ -1,0 +1,2 @@
+Adicionar CPF no cliente
+Alterar o status do usuário para quer seja possível o cadastro de cliente sem a necessidade do endereço, caso o cliente se cadastre no estabelecimento. Posteriormente no primeiro login será pedida a configuração da senha enviada no e-mail e definição do endereço.

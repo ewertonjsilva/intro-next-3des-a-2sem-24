@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 // import { Link, useNavigate } from 'react-router-dom';
 import Link from 'next/link';
@@ -26,9 +26,7 @@ function LoginUsu() {
         logar();
     }
 
-
-
-    async function logar(event) {
+    async function logar() {
 
         try {
             const dados = {
@@ -58,7 +56,7 @@ function LoginUsu() {
             if (error.response) {
                 alert(error.response.data.mensagem + '\n' + error.response.data.dados);
             } else {
-                alert(error);
+                alert('Erro no front-end' + '\n' + error);
             }
         }
     }
