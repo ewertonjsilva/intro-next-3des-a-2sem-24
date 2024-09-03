@@ -137,6 +137,11 @@
   margin-right: 1rem;
 }
 
+.valNome {
+  width: 150%;
+  margin-right: 1rem;
+}
+
 .valNum {
   width: 60%;
   margin-right: 1rem;

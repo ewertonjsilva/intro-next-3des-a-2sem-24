@@ -23,15 +23,15 @@ export default function CadUsuario() {
     // info
     const [usuario, setUsuario] = useState({
         usu_nome: '',
-        usu_dt_nasc: '',
         usu_email: '',
-        cid_id: '0',
+        usu_senha: '',
+        usu_dt_nasc: '',
         end_logradouro: '',
         end_num: '',
         end_bairro: '',
         end_complemento: '',
+        cid_id: '0',
         cli_cel: '',
-        usu_senha: '',
         uf: '0',
         confSenha: '',
     });
@@ -45,22 +45,36 @@ export default function CadUsuario() {
     }, []);
 
     useEffect(() => {
-        listaCidades();
+        listaCidades();        
     }, [usuario.uf]);
 
     async function listaUfs() {
-        const response = await api.get('/ufs');
-        setUfs(response.data.dados);
+        try {
+            const response = await api.get('/ufs');
+            setUfs(response.data.dados);
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.mensagem + '\n' + error.response.data.dados);
+            } else {
+                alert('Erro no front-end' + '\n' + error);
+            }
+        }
     }
 
     async function listaCidades() {
         if (usuario.uf) {
+            const dados = {
+                cid_uf: usuario.uf
+            }
             try {
-                console.log(usuario.uf);
-                const response = await api.post('/cidades', { cid_uf: uf });
+                const response = await api.post('/cidades', dados);
                 setCidades(response.data.dados);
             } catch (error) {
-                console.error('Erro ao buscar cidades:', error);
+                if (error.response) {
+                    alert(error.response.data.mensagem + '\n' + error.response.data.dados);
+                } else {
+                    alert('Erro no front-end' + '\n' + error);
+                }
             }
         }
     }
@@ -147,6 +161,13 @@ export default function CadUsuario() {
 
     function validaNascimento() {
 
+        // Obtém a data atual
+        const hoje = new Date();
+        const anoAtual = hoje.getFullYear();
+
+        // Converte a data de nascimento para um objeto Date
+        const dataNascimentoObj = new Date(usuario.usu_dt_nasc);
+
         let objTemp = {
             validado: valSucesso, // css referente ao estado de validação
             mensagem: [] // array de mensagens de validação
@@ -154,12 +175,23 @@ export default function CadUsuario() {
 
         if (usuario.usu_dt_nasc === '') {
             objTemp.validado = valErro;
-            objTemp.mensagem.push('O nome do usuário é obrigatório');
+            objTemp.mensagem.push('O preenchimento da data é obrigatório');
+        } else if (dataNascimentoObj > hoje) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('A data de nascimento não pode ser futura');
+        } else {
+            // Calcula a idade
+            const anoNascimento = dataNascimentoObj.getFullYear();
+            const idade = anoAtual - anoNascimento;
+            if (idade > 100) {
+                objTemp.validado = valErro;
+                objTemp.mensagem.push('A idade não pode ser superior a 100 anos');
+            }
+            if (idade < 14) {
+                objTemp.validado = valErro;
+                objTemp.mensagem.push('A idade não pode ser inferior a 14 anos');
+            }
         }
-        // } else if (usuario.usu_dt_nasc.length < 5) {
-        //     objTemp.validado = valErro;
-        //     objTemp.mensagem.push('Insira o nome completo do usuário');
-        // }
 
         setValida(prevState => ({
             ...prevState, // mantém os valores anteriores
@@ -419,14 +451,16 @@ export default function CadUsuario() {
         // salvar quando atingir o número de itens a serem validados
         // alert(itensValidados);
         if (itensValidados === 12) {
-            alert('chama api');
+            // alert('chama api');
             try {
-                let confirmaCad = {};
-                // const response = await api.post('clientes', usuario);
-                // confirmaCad = response.data.message;
-                // const idUsu = confirmaCad.id;
+                let confirmaCad;
+                const response = await api.post('/clientes', usuario);
+                confirmaCad = response.data.sucesso;
+                // const idUsu = confirmaCad;
                 // alert(idUsu);
-                router.push('/')
+                if (confirmaCad) {
+                    router.push('/')
+                }                
             } catch (error) {
                 if (error.response) {
                     alert(error.response.data.mensagem + '\n' + error.response.data.dados);
@@ -446,7 +480,7 @@ export default function CadUsuario() {
             <form id="form" className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.doisItens}>
 
-                    <div className={valida.nome.validado + ' ' + styles.valEstado} id="valNome">
+                    <div className={valida.nome.validado + ' ' + styles.valNome} id="valNome">
                         <label className={styles.label}>Nome completo</label>
                         <div className={styles.divInput}>
                             <input
@@ -473,7 +507,6 @@ export default function CadUsuario() {
                             <input
                                 type="date"
                                 name="usu_dt_nasc"
-                                placeholder="Digite seu nome completo..."
                                 className={styles.input}
                                 // onChange={v => setUsu_nome(v.target.value)}
                                 onChange={handleChange}
@@ -483,7 +516,7 @@ export default function CadUsuario() {
                             <MdError className={styles.erro} />
                         </div>
                         {
-                            valida.nome.mensagem.map(mens => <small key={mens} id="nome" className={styles.small}>{mens}</small>)
+                            valida.nascimento.mensagem.map(mens => <small key={mens} id="nome" className={styles.small}>{mens}</small>)
                         }
                         {/* <small id="nome" className={styles.small}>{errNome}</small> */}
                     </div>
