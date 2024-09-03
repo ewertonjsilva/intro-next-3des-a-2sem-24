@@ -70,10 +70,10 @@ export let produtos = [
 
 export let estados = [
     {
-        uf: 'SP', 
+        cid_uf: 'SP', 
     }, 
     {
-        uf: 'RJ'
+        cid_uf: 'RJ'
     }
 ]
 

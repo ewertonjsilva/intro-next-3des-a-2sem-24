@@ -1,5 +1,6 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 import Image from 'next/image';
 
@@ -9,11 +10,15 @@ import IconCad from '../../../../public/icones/cadastrar.svg';
 
 import styles from './index.module.css';
 
-import { estados, cidades } from '../../../mocks/dados';
+// import { ufs, cidades } from '../../../mocks/dados';
 
 import api from '@/services/api';
 
 export default function CadUsuario() {
+
+    const router = useRouter();
+    const [ufs, setUfs] = useState([]);
+    const [cidades, setCidades] = useState([]);
 
     // info
     const [usuario, setUsuario] = useState({
@@ -29,12 +34,30 @@ export default function CadUsuario() {
         usu_senha: '',
         uf: '0',
         confSenha: '',
-        usu_tipo: 2
     });
 
     const valDefault = styles.formControl;
     const valSucesso = styles.formControl + ' ' + styles.success;
     const valErro = styles.formControl + ' ' + styles.error;
+
+    useEffect(() => {
+        listaUfs();
+    }, [usuario.uf]);
+
+    async function listaUfs() {
+        const response = await api.get('/ufs');
+        setUfs(response.data.dados);
+    }
+
+    async function listaCidades(e) {
+        setUsuario(prev => ({ ...prev, [e.target.name]: e.target.value }));               
+        const dados = {
+            cid_uf: usuario.uf
+        }
+        const response = await api.get('/cidades', dados);
+        console.log(response);
+        setCidades(response.data.dados);
+    }
 
     // validação
     const [valida, setValida] = useState({
@@ -115,7 +138,7 @@ export default function CadUsuario() {
         const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
         return testeResult;
     }
-    
+
     function validaNascimento() {
 
         let objTemp = {
@@ -372,6 +395,7 @@ export default function CadUsuario() {
 
 
     async function handleSubmit(event) {
+        event.preventDefault();
         let itensValidados = 0;
         itensValidados += validaNome();
         itensValidados += validaNascimento();
@@ -385,34 +409,25 @@ export default function CadUsuario() {
         itensValidados += validaCelular();
         itensValidados += validaSenha();
         itensValidados += validaConfSenha();
+
         // salvar quando atingir o número de itens a serem validados
         // alert(itensValidados);
-        if (itensValidados === 11) {
-            alert('chama api')
+        if (itensValidados === 12) {
+            alert('chama api');
             try {
                 let confirmaCad = {};
-                const response = await api.post('clientes', usuario);
-                confirmaCad = response.data.message;
-                const idUsu = confirmaCad.id;
-                montaMensagem(idUsu);
-            } catch (err) {
-                console.log('Erro: ' + err);
-                confirmaCad = 0;
+                // const response = await api.post('clientes', usuario);
+                // confirmaCad = response.data.message;
+                // const idUsu = confirmaCad.id;
+                // alert(idUsu);
+                router.push('/')
+            } catch (error) {
+                if (error.response) {
+                    alert(error.response.data.mensagem + '\n' + error.response.data.dados);
+                } else {
+                    alert('Erro no front-end' + '\n' + error);
+                }
             }
-        }
-        event.preventDefault();
-    }
-
-    async function CadastraUsu() {
-        try {
-            let confirmaCad = {};
-            const response = await api.post('clientes', usuario);
-            confirmaCad = response.data.message;
-            const idUsu = confirmaCad.id;
-            montaMensagem(idUsu);
-        } catch (err) {
-            console.log('Erro: ' + err);
-            confirmaCad = 0;
         }
     }
 
@@ -446,7 +461,7 @@ export default function CadUsuario() {
                         {/* <small id="nome" className={styles.small}>{errNome}</small> */}
                     </div>
 
-                    <div className={valida.nome.validado} id="valDtNasc">
+                    <div className={valida.nascimento.validado} id="valDtNasc">
                         <label className={styles.label}>Data de nascimento</label>
                         <div className={styles.divInput}>
                             <input
@@ -491,11 +506,11 @@ export default function CadUsuario() {
                     <div className={valida.uf.validado + ' ' + styles.valEstado} id="valEstado">
                         <label className={styles.label}>Estado</label>
                         <div className={styles.divInput}>
-                            <select className={styles.select} name="uf" id="estado" onChange={handleChange} defaultValue={usuario.uf}>
+                            <select className={styles.select} name="uf" id="estado" onChange={listaCidades} defaultValue={usuario.uf}>
                                 <option disabled value="0">Sel. estado</option>
                                 {
-                                    estados.map(uf => (
-                                        <option key={uf.uf} value={uf.uf}>{uf.uf}</option>
+                                    ufs.map(uf => (
+                                        <option key={uf.cid_uf} value={uf.cid_uf}>{uf.cid_uf}</option>
                                     ))
                                 }
                             </select>
