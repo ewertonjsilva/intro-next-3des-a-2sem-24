@@ -42,6 +42,10 @@ export default function CadUsuario() {
 
     useEffect(() => {
         listaUfs();
+    }, []);
+
+    useEffect(() => {
+        listaCidades();
     }, [usuario.uf]);
 
     async function listaUfs() {
@@ -49,14 +53,16 @@ export default function CadUsuario() {
         setUfs(response.data.dados);
     }
 
-    async function listaCidades(e) {
-        setUsuario(prev => ({ ...prev, [e.target.name]: e.target.value }));               
-        const dados = {
-            cid_uf: usuario.uf
+    async function listaCidades() {
+        if (usuario.uf) {
+            try {
+                console.log(usuario.uf);
+                const response = await api.post('/cidades', { cid_uf: uf });
+                setCidades(response.data.dados);
+            } catch (error) {
+                console.error('Erro ao buscar cidades:', error);
+            }
         }
-        const response = await api.get('/cidades', dados);
-        console.log(response);
-        setCidades(response.data.dados);
     }
 
     // validação
@@ -506,7 +512,7 @@ export default function CadUsuario() {
                     <div className={valida.uf.validado + ' ' + styles.valEstado} id="valEstado">
                         <label className={styles.label}>Estado</label>
                         <div className={styles.divInput}>
-                            <select className={styles.select} name="uf" id="estado" onChange={listaCidades} defaultValue={usuario.uf}>
+                            <select className={styles.select} name="uf" id="estado" onChange={handleChange} defaultValue={usuario.uf}>
                                 <option disabled value="0">Sel. estado</option>
                                 {
                                     ufs.map(uf => (
