@@ -490,7 +490,7 @@ export default function CadUsuario() {
                                 className={styles.input}
                                 // onChange={v => setUsu_nome(v.target.value)}
                                 onChange={handleChange}
-                            // value={usu_nome}
+                                // value={usu_nome}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
