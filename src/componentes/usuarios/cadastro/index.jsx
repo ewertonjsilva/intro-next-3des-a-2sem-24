@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import InputMask from 'react-input-mask';
 
 import Image from 'next/image';
 
@@ -26,6 +27,7 @@ export default function CadUsuario() {
         usu_email: '',
         usu_senha: '',
         usu_dt_nasc: '',
+        usu_cpf: '',
         end_logradouro: '',
         end_num: '',
         end_bairro: '',
@@ -45,7 +47,7 @@ export default function CadUsuario() {
     }, []);
 
     useEffect(() => {
-        listaCidades();        
+        listaCidades();
     }, [usuario.uf]);
 
     async function listaUfs() {
@@ -90,6 +92,10 @@ export default function CadUsuario() {
             mensagem: []
         },
         email: {
+            validado: valDefault,
+            mensagem: []
+        },
+        cpf: {
             validado: valDefault,
             mensagem: []
         },
@@ -230,6 +236,68 @@ export default function CadUsuario() {
         const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
         return testeResult;
 
+    }
+
+    function validaCpf() {
+        let objTemp = {
+            validado: valSucesso,
+            mensagem: []
+        };
+
+        // Remove todos os caracteres não numéricos
+        const cpf = usuario.usu_cpf.replace(/\D/g, '');
+        
+        if (cpf.length < 11) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('O CPF precisa ter 11 dígitos');
+        } else if (/^(\d)\1{10}$/.test(cpf)) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('O CPF digitado é inválido');
+        } else if (validaDigitosCPF(cpf) === false) {
+            objTemp.validado = valErro;
+            objTemp.mensagem.push('O CPF digitado é inválido');
+        }
+
+        setValida(prevState => ({
+            ...prevState, // mantém os valores anteriores
+            cpf: objTemp // atualiza apenas o campo 'nome'
+        }));
+
+        const testeResult = objTemp.mensagem.length === 0 ? 1 : 0;
+        return testeResult;
+
+    }
+
+    function validaDigitosCPF(cpf) {
+        // Valida os dígitos verificadores
+        let soma = 0;
+        let resto;
+        for (let i = 1; i <= 9; i++) {
+            soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+        }
+        resto = (soma * 10) % 11;
+        if (resto === 10 || resto === 11) {
+            resto = 0;
+        }
+        if (resto !== parseInt(cpf.substring(9,
+            10))) {
+            return false;
+        }
+
+        soma = 0;
+        for (let i = 1; i <= 10; i++) {
+            soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+        }
+        resto = (soma * 10) % 11;
+        if (resto === 10 || resto === 11) {
+            resto = 0;
+        }
+        if (resto !== parseInt(cpf.substring(10,
+            11))) {
+            return false;
+        }
+
+        return true;
     }
 
     function validaUf() {
@@ -447,11 +515,13 @@ export default function CadUsuario() {
         itensValidados += validaCelular();
         itensValidados += validaSenha();
         itensValidados += validaConfSenha();
+        itensValidados += validaCpf();
 
         // salvar quando atingir o número de itens a serem validados
         // alert(itensValidados);
-        if (itensValidados === 12) {
-            // alert('chama api');
+        if (itensValidados === 13) {
+            // alert('chama api');            
+
             try {
                 let confirmaCad;
                 const response = await api.post('/clientes', usuario);
@@ -460,7 +530,7 @@ export default function CadUsuario() {
                 // alert(idUsu);
                 if (confirmaCad) {
                     router.push('/')
-                }                
+                }
             } catch (error) {
                 if (error.response) {
                     alert(error.response.data.mensagem + '\n' + error.response.data.dados);
@@ -479,7 +549,6 @@ export default function CadUsuario() {
             </div>
             <form id="form" className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.doisItens}>
-
                     <div className={valida.nome.validado + ' ' + styles.valNome} id="valNome">
                         <label className={styles.label}>Nome completo</label>
                         <div className={styles.divInput}>
@@ -490,7 +559,7 @@ export default function CadUsuario() {
                                 className={styles.input}
                                 // onChange={v => setUsu_nome(v.target.value)}
                                 onChange={handleChange}
-                                // value={usu_nome}
+                            // value={usu_nome}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -522,23 +591,44 @@ export default function CadUsuario() {
                     </div>
                 </div>
 
-                <div className={valida.email.validado} id="valEmail">
-                    <label className={styles.label}>Email</label>
-                    <div className={styles.divInput}>
-                        <input
-                            type="text"
-                            name="usu_email"
-                            placeholder="Digite seu email.."
-                            className={styles.input}
-                            onChange={handleChange}
-                        // value={usu_email}
-                        />
-                        <MdCheckCircle className={styles.sucesso} />
-                        <MdError className={styles.erro} />
+                <div className={styles.doisItens}>
+                    <div className={valida.email.validado + ' ' + styles.valNome} id="valEmail">
+                        <label className={styles.label}>Email</label>
+                        <div className={styles.divInput}>
+                            <input
+                                type="text"
+                                name="usu_email"
+                                placeholder="Digite seu email.."
+                                className={styles.input}
+                                onChange={handleChange}
+                            // value={usu_email}
+                            />
+                            <MdCheckCircle className={styles.sucesso} />
+                            <MdError className={styles.erro} />
+                        </div>
+                        {
+                            valida.email.mensagem.map(mens => <small key={mens} id="email" className={styles.small}>{mens}</small>)
+                        }
                     </div>
-                    {
-                        valida.email.mensagem.map(mens => <small key={mens} id="email" className={styles.small}>{mens}</small>)
-                    }
+
+                    <div className={valida.cpf.validado} id="valCpf">
+                        <label className={styles.label}>CPF</label>
+                        <div className={styles.divInput}>
+                            <InputMask
+                                mask="999.999.999-99"
+                                name="usu_cpf"
+                                placeholder="Digite seu CPF.."
+                                className={styles.input}
+                                onChange={handleChange}
+                            // value={usu_cpf}
+                            />
+                            <MdCheckCircle className={styles.sucesso} />
+                            <MdError className={styles.erro} />
+                        </div>
+                        {
+                            valida.cpf.mensagem.map(mens => <small key={mens} id="cpf" className={styles.small}>{mens}</small>)
+                        }
+                    </div>
                 </div>
 
                 <div className={styles.doisItens}>
