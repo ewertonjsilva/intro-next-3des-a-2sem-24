@@ -3,12 +3,20 @@ import Link from "next/link";
 
 import styles from './index.module.css';
 
+
 export default function CardProduto({ produto }) {
+
+    const imageLoader = ({ src, width, quality }) => {
+        console.log(`http://10.67.22.144:3333${src}?w=${width}&q=${quality || 75}`);
+        return `http://10.67.22.144:3333${src}?w=${width}&q=${quality || 75}`
+    }
+
     return (
         <Link href={`/produtos/${produto.prd_id}`} key={produto.prd_id} className={styles.card}>
             {/* <div className={styles.card}> */}
             <div className={styles.imagemContainer}>
                 <Image
+                    loader={imageLoader} /* Quando imagem vem por url */
                     src={produto.prd_img}
                     alt={produto.prd_nome}
                     width={200}

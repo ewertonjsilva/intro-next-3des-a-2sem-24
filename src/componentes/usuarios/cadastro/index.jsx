@@ -620,7 +620,7 @@ export default function CadUsuario() {
                                 placeholder="Digite seu CPF.."
                                 className={styles.input}
                                 onChange={handleChange}
-                            // value={usu_cpf}
+                                // value={usu_cpf}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -680,7 +680,7 @@ export default function CadUsuario() {
                             placeholder="Digite o endereço..."
                             className={styles.input}
                             onChange={handleChange}
-                        // value={end_logradouro}
+                            // value={end_logradouro}
                         />
                         <MdCheckCircle className={styles.sucesso} />
                         <MdError className={styles.erro} />
@@ -700,7 +700,7 @@ export default function CadUsuario() {
                                 placeholder="nº do endereço"
                                 className={styles.input}
                                 onChange={handleChange}
-                            // value={end_num}
+                                // value={end_num}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -719,7 +719,7 @@ export default function CadUsuario() {
                                 placeholder="Insira o nome do bairro"
                                 className={styles.input}
                                 onChange={handleChange}
-                            // value={end_bairro}
+                                // value={end_bairro}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -740,7 +740,7 @@ export default function CadUsuario() {
                                 placeholder="Complemento do endereço"
                                 className={styles.input}
                                 onChange={handleChange}
-                            // value={end_complemento}
+                                // value={end_complemento}
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
@@ -753,13 +753,21 @@ export default function CadUsuario() {
                     <div className={valida.celular.validado} id="valCelular">
                         <label className={styles.label}>nº celular</label>
                         <div className={styles.divInput}>
-                            <input
+                            {/* <input
                                 type="text"
                                 name="cli_cel"
                                 placeholder="Insira o nº do celular"
                                 className={styles.input}
                                 onChange={handleChange}
-                            // value={cli_cel}
+                                // value={cli_cel}
+                            /> */}
+                            <InputMask 
+                                mask="(99)99999-9999" 
+                                name="cli_cel" 
+                                placeholder="Insira o nº do celular" 
+                                className={styles.input} 
+                                // value={telefone} 
+                                onChange={handleChange} 
                             />
                             <MdCheckCircle className={styles.sucesso} />
                             <MdError className={styles.erro} />
