@@ -37,7 +37,7 @@ function LoginUsu() {
             const response = await api.post('/usuarios/login', dados);
 
             if (response.data.sucesso == true) {
-                const usuario = response.data.dados;
+                const usuario = response.data.dados; 
                 const objLogado = {
                     "id": usuario.usu_id,
                     "nome": usuario.usu_nome,
@@ -54,7 +54,10 @@ function LoginUsu() {
 
         } catch (error) {
             if (error.response) {
-                alert(error.response.data.mensagem + '\n' + error.response.data.dados);
+                alert(error.response.data.dados == null ? 
+                    error.response.data.mensagem 
+                : 
+                    error.response.data.mensagem + '\n' + error.response.data.dados);
             } else {
                 alert('Erro no front-end' + '\n' + error);
             }

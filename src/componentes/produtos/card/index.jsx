@@ -6,9 +6,11 @@ import styles from './index.module.css';
 
 export default function CardProduto({ produto }) {
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const apiPorta = process.env.NEXT_PUBLIC_API_PORTA;
+
     const imageLoader = ({ src, width, quality }) => {
-        console.log(`http://10.67.22.144:3333${src}?w=${width}&q=${quality || 75}`);
-        return `http://10.67.22.144:3333${src}?w=${width}&q=${quality || 75}`
+        return `${apiUrl}:${apiPorta}${src}?w=${width}&q=${quality || 75}`
     }
 
     return (
