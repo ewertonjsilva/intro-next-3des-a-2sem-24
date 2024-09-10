@@ -6,6 +6,8 @@ import carr from '../../../../public/icones/carrinho.svg';
 
 import styles from './index.module.css';
 
+// import { produtos} from '../../../mocks/dados';
+
 function Produto({ produto }) {
 
     const [qtd, setQtd] = useState(1);

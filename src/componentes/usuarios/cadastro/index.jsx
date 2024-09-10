@@ -48,6 +48,7 @@ export default function CadUsuario() {
 
     useEffect(() => {
         listaCidades();
+        setUsuario(prev => ({...prev, cid_id : '0'}));
     }, [usuario.uf]);
 
     async function listaUfs() {
@@ -655,7 +656,7 @@ export default function CadUsuario() {
                         <label className={styles.label}>Cidade</label>
                         <div className={styles.divInput}>
                             <select className={styles.select} name="cid_id" id="cidade" onChange={handleChange} defaultValue={usuario.cid_id}>
-                                <option disabled value="0">Selecione a cidade</option>
+                                <option value="0">Selecione a cidade</option>
                                 {
                                     cidades.map(cid => (
                                         <option key={cid.cid_id} value={cid.cid_id}>{cid.cid_nome}</option>
