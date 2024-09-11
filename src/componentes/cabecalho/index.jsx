@@ -11,14 +11,21 @@ function Header() {
 
   const [mobile, setMobile] = useState(false);
   const [logado, setLogado] = useState(false);
+  const [usuarioLog, setUsuarioLog] = useState({});
 
   const rota = usePathname();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      setLogado(true);      
-    }    
+      setLogado(true);
+      const primeiroNome = user.nome.split(' ');
+      const infoUsu = {
+        nome: primeiroNome[0],
+        tipo: user.acesso
+      }
+      setUsuarioLog(infoUsu);
+    }
   }, [rota]);
 
   function sair() {
@@ -34,7 +41,6 @@ function Header() {
       setMobile(false);
     }
   }
-
 
   return (
     <header className={styles.containerNav}>
@@ -52,19 +58,60 @@ function Header() {
             href='/listprod'
             className={rota === '/listprod' ? styles.active : ''}
           >Produtos</Link>
-          <Link
-            href='/usuarios/cadastro'
-            className={rota === '/usuarios/cadastro' ? styles.active : ''}
-          >Cadastrar</Link>
-          <Link
-            href='/sobre'
-            className={rota === '/sobre' ? styles.active : ''}
-          >Sobre</Link>
+
+          {/* CARRINHO / RESTAURANTE ------------------ */}
           {
-            logado ? <span className={styles.menuSair} onClick={() => sair()}>Sair</span> : <Link
-              href='/usuarios/login'
-              className={rota === '/usuarios/login' ? styles.active : ''}
-            >Login</Link>
+            !logado ?
+              <Link
+                href='/usuarios/cadastro'
+                className={rota === '/usuarios/cadastro' ? styles.active : ''}
+              >Cadastrar</Link>
+              : usuarioLog.tipo == 2 ?
+                <Link
+                  href='/carrinho'
+                  className={rota === '/carrinho' ? styles.active : ''}
+                >{usuarioLog.nome}</Link>
+                :
+                <Link
+                  href='/restaurante'
+                  className={rota === '/restaurante' ? styles.active : ''}
+                >{usuarioLog.nome}</Link>
+          }
+
+
+          {/* SOBRE / USUÁRIO */}
+          {
+            !logado ?
+              <Link
+                href='/sobre'
+                className={rota === '/sobre' ? styles.active : ''}
+              >Sobre</Link>
+              : usuarioLog.tipo == 0 ?
+                <Link
+                  href='/adm'
+                  className={rota === '/adm' ? styles.active : ''}
+                >{usuarioLog.nome}</Link>
+                : usuarioLog.tipo == 1 ?
+                  <Link
+                    href='/restaurante'
+                    className={rota === '/restaurante' ? styles.active : ''}
+                  >{usuarioLog.nome}</Link>
+                  :
+                  <Link
+                    href='/cliente'
+                    className={rota === '/cliente' ? styles.active : ''}
+                  >{usuarioLog.nome}</Link>
+          }
+
+          {/* LOGIN / SAIR */}
+          {
+            logado ?
+              <span className={styles.menuSair} onClick={() => sair()}>Sair</span>
+              :
+              <Link
+                href='/usuarios/login'
+                className={rota === '/usuarios/login' ? styles.active : ''}
+              >Login</Link>
           }
 
         </nav>
