@@ -41,12 +41,16 @@ export default function ProdutosHome() {
 
     return (
         <div className={styles.produtos}>
+            
             {
+                produtos.length > 0 ?
                 produtos.map(
                     prd => {
                         return <CardProduto produto={prd} key={prd.prd_id} />
                     }
                 )
+                :
+                <h1>Não foi possível carregar os itens</h1>
             }
         </div>
     );
