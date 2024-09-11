@@ -1,0 +1,32 @@
+.containerMenuGerenciamento {
+    display: flex;
+    flex-direction: column; 
+    width: 25%; 
+    border-right: 0.5rem solid #B71C1C;
+}
+
+.containerMenuGerenciamento a {
+    /* width: 12rem; */
+    height: 8rem;
+    color: #B71C1C;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+} 
+
+.containerMenuGerenciamento a:hover {
+    border: 0.4rem solid #F05545;
+    color: #F05545;
+}
+
+.containerMenuGerenciamento a.active {
+    background-color: #B71C1C;
+    color: #fafafa;
+    border: 0.4rem solid #B71C1C;
+}

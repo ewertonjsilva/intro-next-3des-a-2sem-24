@@ -59,7 +59,7 @@ function Header() {
             className={rota === '/listprod' ? styles.active : ''}
           >Produtos</Link>
 
-          {/* CARRINHO / RESTAURANTE ------------------ */}
+          {/* CARRINHO / RESTAURANTE */}
           {
             !logado ?
               <Link

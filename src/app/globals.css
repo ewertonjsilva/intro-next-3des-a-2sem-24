@@ -171,6 +171,13 @@ body {
 	width: 100%;
 } 
 
+.containerMenuLateral {
+	display: flex; 
+	width: 100%;	
+	max-width: 112.8rem;
+	margin-bottom: 1rem;
+}
+
 a {
 	text-decoration: none;
 }
