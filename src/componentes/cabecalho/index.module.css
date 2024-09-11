@@ -106,6 +106,10 @@
     border: 0.4rem solid #B71C1C;
 }
 
+.menuMobileExpandidon, .menuMobileExpandidos {
+    transition: max-height 0.3s ease-out;
+  }
+  
 @media screen and (max-width: 940px) {
     .containerNav {
         flex-direction: column;

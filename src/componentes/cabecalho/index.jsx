@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import { MdFastfood, MdMenu } from 'react-icons/md';
 
@@ -14,6 +15,7 @@ function Header() {
   const [usuarioLog, setUsuarioLog] = useState({});
 
   const rota = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -24,14 +26,22 @@ function Header() {
         nome: primeiroNome[0],
         tipo: user.acesso
       }
+      // E nas requisições subsequentes, envie o token nos cookies:
+      const token = user;
+      if (token) {
+        document.cookie = `token=${token}; path=/;`;
+      }
       setUsuarioLog(infoUsu);
-    }
+    } 
   }, [rota]);
 
   function sair() {
+    const data = new Date();
     localStorage.clear();
-    window.location.reload(true);
-    // navigate('/');
+    document.cookie = `token=; expires=${data}; path=/;`; 
+    setLogado(false);
+    setUsuarioLog({});
+    router.push('/');   
   }
 
   function ativaMenu() {
@@ -70,12 +80,12 @@ function Header() {
                 <Link
                   href='/carrinho'
                   className={rota === '/carrinho' ? styles.active : ''}
-                >{usuarioLog.nome}</Link>
+                >Carrinho</Link>
                 :
                 <Link
-                  href='/restaurante'
-                  className={rota === '/restaurante' ? styles.active : ''}
-                >{usuarioLog.nome}</Link>
+                  href='/gerenciamento'
+                  className={rota === '/gerenciamento' ? styles.active : ''}
+                >Gerenciamento</Link>
           }
 
 

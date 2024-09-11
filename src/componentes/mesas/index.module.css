@@ -1,0 +1,47 @@
+.mesas-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.mesa-card {
+    border: 2px solid;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.mesa-card h2 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.mesa-card p {
+    margin: 5px 0;
+}
+
+.mesa-lugares-control {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mesa-lugares-control button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.mesa-lugares-control button:hover {
+    background-color: #0056b3;
+}
+
+.mesa-card:hover {
+    transform: scale(1.05);
+}
