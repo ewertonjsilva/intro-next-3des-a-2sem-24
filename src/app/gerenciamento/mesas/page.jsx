@@ -1,11 +1,9 @@
-import Image from "next/image";
+import Mesas from "@/componentes/mesas";
 
-export default function Mesas() {
+export default function MesasRota() {
   return (
     <div className="containerGlobal">
-      <div>
-        <h1>Mesas</h1>
-      </div>      
+      <Mesas />     
     </div>
   );
 }

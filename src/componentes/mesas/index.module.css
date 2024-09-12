@@ -1,11 +1,11 @@
-.mesas-container {
+.mesasContainer {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
 }
 
-.mesa-card {
+.mesaCard {
     border: 2px solid;
     padding: 20px;
     border-radius: 10px;
@@ -14,21 +14,21 @@
     transition: transform 0.2s ease;
 }
 
-.mesa-card h2 {
+.mesaCard h2 {
     margin: 0;
     margin-bottom: 10px;
 }
 
-.mesa-card p {
+.mesaCard p {
     margin: 5px 0;
 }
 
-.mesa-lugares-control {
+.mesaLugaresControl {
     display: flex;
     justify-content: space-between;
 }
 
-.mesa-lugares-control button {
+.mesaLugaresControl button {
     background-color: #007bff;
     border: none;
     color: white;
@@ -38,10 +38,10 @@
     border-radius: 5px;
 }
 
-.mesa-lugares-control button:hover {
+.mesaLugaresControl button:hover {
     background-color: #0056b3;
 }
 
-.mesa-card:hover {
+.mesaCard:hover {
     transform: scale(1.05);
 }
