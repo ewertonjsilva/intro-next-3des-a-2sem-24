@@ -32,16 +32,16 @@ function Header() {
         document.cookie = `token=${token}; path=/;`;
       }
       setUsuarioLog(infoUsu);
-    } 
+    }
   }, [rota]);
 
   function sair() {
     const data = new Date();
     localStorage.clear();
-    document.cookie = `token=; expires=${data}; path=/;`; 
+    document.cookie = `token=; expires=${data}; path=/;`;
     setLogado(false);
     setUsuarioLog({});
-    router.push('/');   
+    router.push('/');
   }
 
   function ativaMenu() {
@@ -96,21 +96,11 @@ function Header() {
                 href='/sobre'
                 className={rota === '/sobre' ? styles.active : ''}
               >Sobre</Link>
-              : usuarioLog.tipo == 0 ?
-                <Link
-                  href='/adm'
-                  className={rota === '/adm' ? styles.active : ''}
-                >{usuarioLog.nome}</Link>
-                : usuarioLog.tipo == 1 ?
-                  <Link
-                    href='/restaurante'
-                    className={rota === '/restaurante' ? styles.active : ''}
-                  >{usuarioLog.nome}</Link>
-                  :
-                  <Link
-                    href='/cliente'
-                    className={rota === '/cliente' ? styles.active : ''}
-                  >{usuarioLog.nome}</Link>
+              :
+              <Link
+                href='/usuarios/perfil'
+                className={rota === '/usuarios/perfil' ? styles.active : ''}
+              >{usuarioLog.nome}</Link>
           }
 
           {/* LOGIN / SAIR */}
