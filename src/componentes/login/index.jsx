@@ -49,7 +49,7 @@ function LoginUsu() {
                 router.push('/'); // é possível direcionar de acordo com a situação
 
             } else {
-                alert('Erro: ' + error.response.data.mensagem + '\n' + error.response.data.dados)
+                alert('Erro: ' + response.data.mensagem + '\n' + response.data.dados)
             }
 
         } catch (error) {

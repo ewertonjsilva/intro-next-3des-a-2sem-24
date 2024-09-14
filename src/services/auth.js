@@ -11,6 +11,9 @@ const logout = () => localStorage.removeItem(STORAGE_KEY);
 
 const dados = JSON.parse(localStorage.getItem(STORAGE_KEY));
 // const tipo = dados?.tipo; 
+// "id": usuario.usu_id,
+// "nome": usuario.usu_nome,
+// "acesso": usuario.usu_tipo
 
 
 export { isLogged, login, logout, dados }

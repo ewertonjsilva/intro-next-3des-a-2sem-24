@@ -6,7 +6,7 @@ import EdtUsuario from "@/componentes/usuarios/edicao";
 export default function Perfil() {
   return (
     <div className="containerGlobal">
-      <h1>Perfil usuário</h1>  
+      <h1>Perfil do usuário</h1>  
       <EdtUsuario />  
     </div>
   );
