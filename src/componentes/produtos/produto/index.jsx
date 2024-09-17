@@ -11,23 +11,42 @@ import styles from './index.module.css';
 
 function Produto({ idProduto }) {
 
-    const [produto, setProduto] = useState([]);
+    const [produto, setProduto] = useState({
+        "prd_id": "",
+        "prd_nome": "",
+        "prd_valor": "",
+        "prd_unidade": "",
+        "ptp_icone": "",
+        "prd_img": "",
+        "prd_descricao": ""
+    });
     const [qtd, setQtd] = useState(1);
-    const [total, setTotal] = useState(produto.prd_valor);
+    const [total, setTotal] = useState(0);
+
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const apiPorta = process.env.NEXT_PUBLIC_API_PORTA;
+
+    const imageLoader = ({ src, width, quality }) => {
+        console.log(`${apiUrl}:${apiPorta}${src}?w=${width}&q=${quality || 75}`);
+        return `${apiUrl}:${apiPorta}${src}?w=${width}&q=${quality || 75}`
+    }
 
     useEffect(() => {
         handleCarregaProduto();
+        setTotal(produto.prd_valor);
 
         async function handleCarregaProduto() {
             const dadosApi = {
                 prd_id: idProduto
             }
             try {
-                const response = await api.get('/produtos', dadosApi);                
+                const response = await api.post('/listaprodutos', dadosApi);
                 const confirmaAcesso = response.data.sucesso;
                 if (confirmaAcesso) {
                     const produtoApi = response.data.dados[0];
-                    setProduto(produtoApi);
+                    if (response.data.dados.length > 0) {
+                        setProduto(produtoApi);
+                    }
                 }
             } catch (error) {
                 if (error.response) {
@@ -45,23 +64,33 @@ function Produto({ idProduto }) {
         setQtd(Number(nvVlr));
         setTotal(totalTemp.toFixed(2));
     }
-console.log(produto.length);
+console.log(produto);
     return (
         <div className={styles.container}>
             {
-                produto ?
+                produto.prd_id !== '' ?
                     <>
                         <div className={styles.containerItem}>
-                            {/* <Image
+                            <Image
+                                loader={imageLoader}
                                 className={styles.imagemProd}
                                 src={produto.prd_img}
-                                alt={"Imagem " + produto.prd_nome}
-                            /> */}
+                                alt={"Imagem " + produto.prd_nome} 
+                                width={200}
+                                height={200}                              
+                            />
                         </div>
                         <div className={styles.containerItem}>
                             <div className={styles.titulo}>
                                 <h1>{produto.prd_nome}</h1>
-                                {/* <Image src={produto.img_tp_prod} className={styles.icon} alt={produto.img_tp_prod} /> */}
+                                <Image 
+                                    loader={imageLoader}                                     
+                                    className={styles.icon} 
+                                    src={produto.ptp_icone} 
+                                    alt={produto.ptp_icone} 
+                                    width={20}
+                                    height={20}
+                                />
                             </div>
                             <span className={styles.descricao}>{produto.prd_descricao}</span>
                             <span className={styles.valor}>{'R$ ' + produto.prd_valor}</span>
@@ -83,9 +112,7 @@ console.log(produto.length);
                         </div>
                     </>
                     :
-                    <>
-                        <h1>Não há resultados para a requisição</h1>
-                    </>
+                    <h1>Não há resultados para a requisição</h1>
             }
         </div>
     );
