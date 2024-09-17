@@ -13,6 +13,7 @@ import CardProduto from '../card';
 export default function ProdutosHome() {
 
     const [produtos, setProdutos] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         listarProdutos();
@@ -20,7 +21,7 @@ export default function ProdutosHome() {
 
     async function listarProdutos() {
         try {
-
+            setLoading(true); // Início do carregamento
             const response = await api.get('/produtos/home');
 
             if (response.data.sucesso == true) {
@@ -36,22 +37,24 @@ export default function ProdutosHome() {
             } else {
                 alert('Erro no front-end' + '\n' + error);
             }
+        } finally {
+            setLoading(false); // Fim do carregamento
         }
     }
 
     return (
         <div className={styles.produtos}>
-            
-            {
-                produtos.length > 0 ?
-                produtos.map(
-                    prd => {
-                        return <CardProduto produto={prd} key={prd.prd_id} />
-                    }
-                )
-                :
+
+            {loading ? ( // Se estiver carregando, mostrar o loading
+                <div className={styles.loading}>Carregando...</div>
+            ) : produtos.length > 0 ? (
+                produtos.map((prd) => (
+                    <CardProduto produto={prd} key={prd.prd_id} />
+                ))
+            ) : (
                 <h1>Não foi possível carregar os itens</h1>
-            }
+            )}
+
         </div>
     );
 }

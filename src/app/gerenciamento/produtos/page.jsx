@@ -1,11 +1,9 @@
-import Image from "next/image";
+import GerProdutos from "@/componentes/produtos/gerenciamento/listagem";
 
 export default function Produtos() {
   return (
     <div className="containerGlobal">
-      <div>
-        <h1>Produtos</h1>
-      </div>      
+      <GerProdutos />   
     </div>
   );
 }

@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 import carr from '../../../../public/icones/carrinho.svg';
@@ -23,6 +24,8 @@ function Produto({ idProduto }) {
     const [qtd, setQtd] = useState(1);
     const [total, setTotal] = useState(0);
 
+    const router = useRouter();
+    const user = JSON.parse(localStorage.getItem('user'));  
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const apiPorta = process.env.NEXT_PUBLIC_API_PORTA;
 
@@ -32,6 +35,7 @@ function Produto({ idProduto }) {
     }
 
     useEffect(() => {
+              
         handleCarregaProduto();
         setTotal(produto.prd_valor);
 
@@ -64,7 +68,15 @@ function Produto({ idProduto }) {
         setQtd(Number(nvVlr));
         setTotal(totalTemp.toFixed(2));
     }
-console.log(produto);
+
+    function handleAddItemCarrinho() {
+        if (user) {
+            router.push('/carrinho');
+        } else {
+            router.push('/usuarios/login');
+        }
+    }
+
     return (
         <div className={styles.container}>
             {
@@ -104,7 +116,7 @@ console.log(produto);
                                     value={qtd}
                                 />
                                 <span className={styles.spanTt}>Total R$ {total}</span>
-                                <button className={styles.button} /*onClick={() => handleAddItem()}*/>
+                                <button className={styles.button} onClick={() => handleAddItemCarrinho()}>
                                     <p className={styles.lblComp}>Inserir no carrinho</p>
                                     <Image className={styles.imgBtn} src={carr} alt="adicionar" />
                                 </button>

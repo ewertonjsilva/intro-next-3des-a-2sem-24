@@ -6,3 +6,10 @@
     border-radius: 2rem;
     flex-wrap: wrap;
 }
+
+.loading {
+    font-size: 2.4rem;
+    color: #333;
+    text-align: center;
+    margin: 5rem;
+}

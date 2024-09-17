@@ -2,7 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
+    justify-content: center; 
+    width: 100%;
 }
 
 .mesaCard {

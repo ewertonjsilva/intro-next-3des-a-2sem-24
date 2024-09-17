@@ -159,6 +159,11 @@ body {
 	max-width: 112.8rem; 
 } */
 
+main {
+	display: flex;
+	flex: 1;
+}
+
 .containerGlobal {
 	max-width: 112.8rem;
 	/* border: 0.3rem solid #00f;  */
