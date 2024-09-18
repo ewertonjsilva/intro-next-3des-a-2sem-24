@@ -26,6 +26,7 @@ function Produto({ idProduto }) {
 
     const router = useRouter();
     const user = JSON.parse(localStorage.getItem('user'));  
+    
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const apiPorta = process.env.NEXT_PUBLIC_API_PORTA;
 
