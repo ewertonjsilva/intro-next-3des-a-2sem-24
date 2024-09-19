@@ -45,7 +45,7 @@ function LoginUsu() {
                 };
                 // signin(JSON.stringify(objLogado));                
                 localStorage.clear();
-                localStorage.setItem('user', JSON.stringify(objLogado));                
+                localStorage.setItem('user', JSON.stringify(objLogado));                                             
                 router.push('/'); // é possível direcionar de acordo com a situação
 
             } else {

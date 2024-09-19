@@ -1,4 +1,4 @@
-import GerProdutos from "@/componentes/produtos/gerenciamento/listagem";
+import GerProdutos from "@/componentes/gerenciamento/listagem";
 
 export default function Produtos() {
   return (

@@ -16,7 +16,7 @@ function Header() {
 
   const rota = usePathname();
   const router = useRouter();
-
+  
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {

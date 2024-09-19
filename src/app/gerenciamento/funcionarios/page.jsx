@@ -1,9 +1,9 @@
-import Image from "next/image";
+import GerFuncionarios from "@/componentes/gerenciamento/funcionarios";
 
 export default function Funcionarios() {
   return (
     <div className="containerGlobal">
-        <h1>Funcionarios</h1>
+        <GerFuncionarios />
     </div>
   );
 }
