@@ -1,0 +1,127 @@
+.container {
+    display: flex; 
+    flex-direction: column;    
+    width: 70rem;  
+    /* align-items: center; */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search {
+    display: flex;
+    gap: 10px;
+}
+
+.search input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+.search select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.addButton {
+    background-color: #B71C1C;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.addButton:hover {
+    background-color: #F05545;
+}
+
+
+.table {
+    /* width: 0 auto; */
+    border-collapse: collapse;
+    /* margin-left: 1rem; */
+}
+
+.table th {
+    padding: 10px;
+    border: 0.3rem solid #B71C1C;
+    text-align: center;
+    background-color: #B71C1C; 
+    color: #fafafa;
+}
+
+.table td {    
+    padding: 10px;
+    border-bottom: 0.3rem solid #B71C1C;
+    text-align: center; 
+    vertical-align: middle; 
+    cursor: pointer;
+}
+
+.table tr:hover td {    
+    background-color: #F05545;
+}
+
+.produtoImg {
+    width: 50px;
+    height: 50px;
+}
+
+.destaqueImg {
+    width: 30px;
+    height: 30px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+}
+
+.modalContent label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.modalContent input,
+.modalContent textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.modalContent button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #B71C1C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modalContent button:hover {
+    background-color: #F05545;
+}

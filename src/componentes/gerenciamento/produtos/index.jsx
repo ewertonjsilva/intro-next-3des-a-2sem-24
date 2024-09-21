@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { MdAttachMoney, MdBlock, MdCheck   } from 'react-icons/md';
+import { MdAttachMoney, MdBlock, MdCheck } from 'react-icons/md';
 
 import styles from './index.module.css';
 
@@ -47,6 +47,8 @@ export default function GerProdutos() {
     const [produtos, setProdutos] = useState(produtosMock);
     const [produtoSelecionado, setProdutoSelecionado] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [filterType, setFilterType] = useState('nome');
+    const [searchTerm, setSearchTerm] = useState('');
 
     const handleEditClick = (produto) => {
         setProdutoSelecionado(produto);
@@ -73,6 +75,24 @@ export default function GerProdutos() {
     return (
         <div className={styles.container}>
             <h1>Lista de Produtos</h1>
+            <div className={styles.header}>
+                <div className={styles.search}>
+                    <input
+                        type="text"
+                        placeholder={`Pesquisar por ${filterType}`}
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+                        <option value="usu_nome">Nome</option>
+                        <option value="usu_email">Em destaque</option>
+                    </select>
+                </div>
+                <button className={styles.addButton} onClick={() => handleEditUser()}>
+                    Adicionar Novo Funcionário
+                </button>
+            </div>
+
             <table className={styles.table}>
                 <thead>
                     <tr>
