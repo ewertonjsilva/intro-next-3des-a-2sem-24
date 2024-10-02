@@ -6,6 +6,8 @@ import { MdAttachMoney, MdBlock, MdCheck, MdEdit, MdDelete } from 'react-icons/m
 
 import styles from './index.module.css';
 
+import ModalProdutos from './modalProdutos';
+
 const produtosMock = [
     {
         prd_id: 1,
@@ -52,8 +54,11 @@ export default function GerProdutos() {
     const [showModal, setShowModal] = useState(false);
     const [filterType, setFilterType] = useState('nome');
     const [searchTerm, setSearchTerm] = useState('');
+    const [titulo, setTitulo] = useState('');
 
-    const handleEditClick = (produto) => {
+    const handleEditClick = (produto = null) => {
+        // console.log(produto);
+        produto ? setTitulo('Editar produto') : setTitulo('Adicionar produto');
         setProdutoSelecionado(produto);
         setShowModal(true);
     };
@@ -89,9 +94,11 @@ export default function GerProdutos() {
                     <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
                         <option value="usu_nome">Nome</option>
                         <option value="usu_email">Em destaque</option>
+                        <option value="usu_email">Disponíveis</option>
+                        <option value="usu_email">Indisponíveis</option>
                     </select>
                 </div>
-                <button className={styles.addButton} onClick={() => handleEditUser()}>
+                <button className={styles.addButton} onClick={() => handleEditClick()}>
                     Adicionar Novo Produto
                 </button>
             </div>
@@ -150,68 +157,8 @@ export default function GerProdutos() {
             </table>
 
             {showModal && (
-                <EditModal produto={produtoSelecionado} onClose={handleModalClose} />
+                <ModalProdutos produto={produtoSelecionado} onClose={handleModalClose} titulo={titulo} />
             )}
-        </div>
-    );
-}
-
-function EditModal({ produto, onClose }) {
-    const [prd_nome, setPrdNome] = useState(produto.prd_nome);
-    const [prd_valor, setPrdValor] = useState(produto.prd_valor);
-    const [prd_unidade, setPrdUnidade] = useState(produto.prd_unidade); // Exemplo para o campo prd_unidade
-    const [prd_disponivel, setPrdDisponivel] = useState(produto.prd_disponivel);
-    const [prd_img, setPrdImg] = useState(produto.prd_img);
-    const [prd_destaque, setPrdDestaque] = useState(produto.prd_destaque);
-    const [prd_descricao, setPrdDescricao] = useState(produto.prd_descricao);
-
-    const handleSave = () => {
-        // Lógica de salvar o produto
-        console.log('Produto atualizado', {
-            prd_nome,
-            prd_valor,
-            prd_unidade,
-            prd_disponivel,
-            prd_img,
-            prd_destaque,
-            prd_descricao,
-        });
-        onClose();
-    };
-
-    return (
-        <div className={styles.modal}>
-            <div className={styles.modalContent}>
-                <h2>Editar Produto</h2>
-                <label>
-                    Nome:
-                    <input type="text" value={prd_nome} onChange={(e) => setPrdNome(e.target.value)} />
-                </label>
-                <label>
-                    Valor:
-                    <input type="number" value={prd_valor} onChange={(e) => setPrdValor(e.target.value)} />
-                </label>
-                <label>
-                    Unidade:
-                    <input type="text" value={prd_unidade} onChange={(e) => setPrdUnidade(e.target.value)} />
-                </label>
-                <label>
-                    Descrição:
-                    <textarea value={prd_descricao} onChange={(e) => setPrdDescricao(e.target.value)} />
-                </label>
-                <div className={styles.ladolado}>
-                    <label>
-                        Disponível:
-                        <input type="checkbox" checked={prd_disponivel} onChange={() => setPrdDisponivel(!prd_disponivel)} />
-                    </label>
-                    <label>
-                        Destaque:
-                        <input type="checkbox" checked={prd_destaque} onChange={() => setPrdDestaque(!prd_destaque)} />
-                    </label>
-                </div>
-                <button onClick={handleSave}>Salvar</button>
-                <button onClick={onClose}>Cancelar</button>
-            </div>
         </div>
     );
 }

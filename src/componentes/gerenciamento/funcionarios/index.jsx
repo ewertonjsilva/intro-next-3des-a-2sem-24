@@ -117,7 +117,7 @@ const GerFuncionarios = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Lista de Usuários do Sistema</h1>
+      <h1>Usuários do Sistema</h1>
       <div className={styles.header}>
         <div className={styles.search}>
           <input

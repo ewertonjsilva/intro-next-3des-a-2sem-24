@@ -82,50 +82,7 @@
     margin: 0.5rem;
 }
 
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-}
 
-.modalContent {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 2rem;
-    width: 50rem;
-}
-
-.modalContent label {
-    display: block;
-    margin-bottom: 1rem;
-}
-
-.modalContent input,
-.modalContent textarea {
-    width: 48rem;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-}
-
-.modalContent button {
-    margin-right: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: #B71C1C;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-}
-
-.modalContent button:hover {
-    background-color: #F05545;
-}
 
 .ladolado {
     display: flex;
