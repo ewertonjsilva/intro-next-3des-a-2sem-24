@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { MdAttachMoney, MdBlock, MdCheck } from 'react-icons/md';
+import { MdAttachMoney, MdBlock, MdCheck, MdEdit, MdDelete } from 'react-icons/md';
 
 import styles from './index.module.css';
 
@@ -16,7 +16,8 @@ const produtosMock = [
         prd_img: '/temp/hamburger-bacon.jpg',
         prd_img_destaque: '/temp/destaque.png',
         prd_descricao: 'Descrição do Produto 1',
-        ptp_id: 1,
+        ptp_id: 1, 
+        prd_unidade: "un."
     },
     {
         prd_id: 2,
@@ -27,7 +28,8 @@ const produtosMock = [
         prd_img: '/temp/macarrao.jpg',
         prd_img_destaque: '/temp/destaque.png',
         prd_descricao: 'Descrição do Produto 2',
-        ptp_id: 2,
+        ptp_id: 2, 
+        prd_unidade: "un."
     },
     {
         prd_id: 3,
@@ -38,7 +40,8 @@ const produtosMock = [
         prd_img: '/temp/sorvete.jpg',
         prd_img_destaque: '/temp/destaque.png',
         prd_descricao: 'Descrição do Produto 3',
-        ptp_id: 2,
+        ptp_id: 2, 
+        prd_unidade: "un."
     },
     // Adicione mais produtos para teste
 ];
@@ -89,7 +92,7 @@ export default function GerProdutos() {
                     </select>
                 </div>
                 <button className={styles.addButton} onClick={() => handleEditUser()}>
-                    Adicionar Novo Funcionário
+                    Adicionar Novo Produto
                 </button>
             </div>
 
@@ -110,7 +113,7 @@ export default function GerProdutos() {
                             <td>
                                 <img src={produto.prd_img} alt={produto.prd_nome} className={styles.produtoImg} />
                             </td>
-                            <td>{produto.prd_valor.toFixed(2)}</td>
+                            <td>R$ {produto.prd_valor.toFixed(2)}</td>
                             <td>
                                 {produto.prd_destaque ? (
                                     <MdAttachMoney className={styles.destaqueImg} color='green' />
@@ -118,12 +121,28 @@ export default function GerProdutos() {
                                     <MdAttachMoney className={styles.destaqueImg} />
                                 )}
                             </td>
-                            <td>
-                                <button onClick={() => handleEditClick(produto)}>Editar</button>
-                                <button onClick={() => handleToggleDisponibilidade(produto.prd_id)}>
-                                    {produto.prd_disponivel ? <MdCheck /> : <MdBlock />}
-                                </button>
-                                <button onClick={() => handleDeleteClick(produto.prd_id)}>Excluir</button>
+                            <td className={styles.acoes}>
+                                <MdEdit
+                                    onClick={() => handleEditClick(produto)}
+                                    className={styles.destaqueImg}
+                                />
+                                {
+                                    produto.prd_disponivel ?
+                                        <MdCheck
+                                            onClick={() => handleToggleDisponibilidade(produto.prd_id)}
+                                            className={styles.destaqueImg}
+                                            color='green'
+                                        />
+                                        :
+                                        <MdBlock
+                                            onClick={() => handleToggleDisponibilidade(produto.prd_id)}
+                                            className={styles.destaqueImg}
+                                        />
+                                }
+                                <MdDelete
+                                    onClick={() => handleDeleteClick(produto.prd_id)}
+                                    className={styles.destaqueImg}
+                                />
                             </td>
                         </tr>
                     ))}
@@ -140,7 +159,7 @@ export default function GerProdutos() {
 function EditModal({ produto, onClose }) {
     const [prd_nome, setPrdNome] = useState(produto.prd_nome);
     const [prd_valor, setPrdValor] = useState(produto.prd_valor);
-    const [prd_unidade, setPrdUnidade] = useState(''); // Exemplo para o campo prd_unidade
+    const [prd_unidade, setPrdUnidade] = useState(produto.prd_unidade); // Exemplo para o campo prd_unidade
     const [prd_disponivel, setPrdDisponivel] = useState(produto.prd_disponivel);
     const [prd_img, setPrdImg] = useState(produto.prd_img);
     const [prd_destaque, setPrdDestaque] = useState(produto.prd_destaque);
@@ -180,14 +199,16 @@ function EditModal({ produto, onClose }) {
                     Descrição:
                     <textarea value={prd_descricao} onChange={(e) => setPrdDescricao(e.target.value)} />
                 </label>
-                <label>
-                    Disponível:
-                    <input type="checkbox" checked={prd_disponivel} onChange={() => setPrdDisponivel(!prd_disponivel)} />
-                </label>
-                <label>
-                    Destaque:
-                    <input type="checkbox" checked={prd_destaque} onChange={() => setPrdDestaque(!prd_destaque)} />
-                </label>
+                <div className={styles.ladolado}>
+                    <label>
+                        Disponível:
+                        <input type="checkbox" checked={prd_disponivel} onChange={() => setPrdDisponivel(!prd_disponivel)} />
+                    </label>
+                    <label>
+                        Destaque:
+                        <input type="checkbox" checked={prd_destaque} onChange={() => setPrdDestaque(!prd_destaque)} />
+                    </label>
+                </div>
                 <button onClick={handleSave}>Salvar</button>
                 <button onClick={onClose}>Cancelar</button>
             </div>
