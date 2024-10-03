@@ -72,17 +72,20 @@ const ModalFuncionarios = ({ user, onSave, onClose }) => {
                             onChange={handleChange}
                         />
                     </label>
-                    <label>
-                        Ativo:
-                        <input
-                            type="checkbox"
-                            name="usu_ativo"
-                            checked={formData.usu_ativo}
-                            onChange={(e) =>
-                                setFormData((prev) => ({ ...prev, usu_ativo: e.target.checked }))
-                            }
-                        />
-                    </label>
+                    <div className={styles.containerCheckbox}>
+                        <label lassName={styles.labelCheckbox}>
+                            Ativo:
+                            <input
+                                type="checkbox"
+                                name="usu_ativo"
+                                className={styles.inputCheckbox}
+                                checked={formData.usu_ativo}
+                                onChange={(e) =>
+                                    setFormData((prev) => ({ ...prev, usu_ativo: e.target.checked }))
+                                }
+                            />
+                        </label>
+                    </div>
                 </form>
                 <div className={styles.modalActions}>
                     <button className={styles.saveButton} onClick={handleSubmit}>

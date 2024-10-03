@@ -82,23 +82,3 @@
     margin: 0.5rem;
 }
 
-
-
-.ladolado {
-    display: flex;
-    flex-direction: row; 
-    justify-content: center;
-    align-items: center;     
-} 
-
-.ladolado label {
-    display: flex;    
-    margin-bottom: 4rem;
-}
-
-.ladolado input,
-.ladolado textarea {   
-    width: 4rem; 
-    padding: 0rem;
-    margin-bottom: 0rem;
-}

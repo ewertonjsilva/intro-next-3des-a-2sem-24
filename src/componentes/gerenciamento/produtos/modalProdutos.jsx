@@ -83,8 +83,10 @@ export default function ModalProdutos({ produto, onSave, onClose, titulo }) {
                         />
                     </label>
                 </div>
-                <button onClick={handleSubmit}>Salvar</button>
-                <button onClick={onClose}>Cancelar</button>
+                <div className={styles.modalActions}>
+                    <button className={styles.saveButton} onClick={handleSubmit}>Salvar</button>
+                    <button className={styles.closeButton} onClick={onClose}>Cancelar</button>
+                </div>                
             </div>
         </div>
     );
