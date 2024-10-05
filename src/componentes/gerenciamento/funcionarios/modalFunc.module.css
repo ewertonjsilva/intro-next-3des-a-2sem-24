@@ -53,8 +53,16 @@
   margin-right: 1rem;
 }
 
+.saveButton:hover {
+  opacity: 0.8;
+}
+
 .closeButton {
   background-color: #B71C1C;
+}
+
+.closeButton:hover {
+  opacity: 0.8;
 }
 
 .modalActions {
