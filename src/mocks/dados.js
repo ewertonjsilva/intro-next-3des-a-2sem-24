@@ -90,4 +90,40 @@ export let cidades = [
         cid_id: 3, 
         cid_nome: 'Marília'
     }, 
+];
+
+export let carrinho = [
+    {
+        prd_id: 1,
+        prd_nome: 'Hamburguer de Bacon',
+        prd_img: prod1, 
+        ppd_qtd: 2, 
+        prd_valor: '21.00',
+        ppd_obs: 'Hamburguer bem passado'
+    },
+    {
+        prd_id: 1,
+        prd_nome: 'Hamburguer de Bacon',
+        prd_img: prod1, 
+        ppd_qtd: 1, 
+        prd_valor: '21.00',
+        ppd_obs: ''
+    },
+    {
+        prd_id: 4,
+        prd_nome: 'Suco de laranja',
+        prd_img: prod1, 
+        ppd_qtd: 1, 
+        prd_valor: '8.25',
+        ppd_obs: 'Sem açucar'
+    },
+    {
+        prd_id: 4,
+        prd_nome: 'Suco de laranja',
+        prd_img: prod1, 
+        ppd_qtd: 2, 
+        prd_valor: '8.25',
+        ppd_obs: 'Com açucar e gelo'
+    },
 ]
+

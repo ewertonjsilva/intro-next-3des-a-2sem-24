@@ -1,2 +1,3 @@
 Adicionar CPF no cliente
-Alterar o status do usuário para quer seja possível o cadastro de cliente sem a necessidade do endereço, caso o cliente se cadastre no estabelecimento. Posteriormente no primeiro login será pedida a configuração da senha enviada no e-mail e definição do endereço.
+Alterar o status do usuário para quer seja possível o cadastro de cliente sem a necessidade do endereço, caso o cliente se cadastre no estabelecimento. Posteriormente no primeiro login será pedida a configuração da senha enviada no e-mail e definição do endereço. 
+Permitir registrar os pedidos adicionando ingredientes no produto. Lembrando que já existe a possibilidade de que ao cadastrar um produto sejam adicionados os possíveis ingredientes que podem ser adicionados. Esta atividade envolve o front e o backend.

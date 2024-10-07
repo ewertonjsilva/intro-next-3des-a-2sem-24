@@ -7,7 +7,7 @@ import Cabecalho from "@/componentes/cabecalho";
 import Rodape from "@/componentes/rodape";
 
 export const metadata = {
-  title: "BomBurGuer",
+  title: "BomBurguer",
   description: "Lanches e petiscos de qualidade",
 };
 
