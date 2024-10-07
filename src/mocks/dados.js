@@ -120,7 +120,7 @@ export let carrinho = [
     {
         prd_id: 4,
         prd_nome: 'Suco de laranja',
-        prd_img: prod1, 
+        prd_img: prod4, 
         ppd_qtd: 2, 
         prd_valor: '8.25',
         ppd_obs: 'Com açucar e gelo'
