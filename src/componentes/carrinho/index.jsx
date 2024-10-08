@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { RiDeleteBin6Line, RiAddLine, RiSubtractLine, RiChat1Line  } from "react-icons/ri"; 
+import { RiDeleteBin6Line, RiAddLine, RiSubtractLine, RiChat1Line } from "react-icons/ri";
 
 import styles from './index.module.css';
 
@@ -50,22 +50,30 @@ function CompCarrinho() {
 export default CompCarrinho;
 
 function Grid(itemCarrinho) {
-  const item = itemCarrinho.item; 
+  const item = itemCarrinho.item;
   const total = item.prd_valor * item.ppd_qtd;
   return (
     <div className={styles.grid}>
-      <div className={styles.carrProduto}>
-        <div className={styles.contImgCarrProd}>
-          <Image
-            src={item.prd_img}
-            alt={item.prd_img}
-            width={100}
-            height={100}
-            className={styles.imagemProduto}
-          />
+      <div>
+        <div className={styles.carrProduto}>
+          <div className={styles.contImgCarrProd}>
+            <Image
+              src={item.prd_img}
+              alt={item.prd_img}
+              width={100}
+              height={100}
+              className={styles.imagemProduto}
+            />
+          </div>
+          <span>{item.prd_nome}</span>
+          <RiDeleteBin6Line />
         </div>
-        <span>{item.prd_nome}</span>
-        <RiDeleteBin6Line />
+        <div>
+          <RiChat1Line />
+          {
+            item.ppd_obs.length > 0 ? <textarea>{item.ppd_obs}</textarea> : <span>Adicionar observação</span>
+          }
+        </div>
       </div>
       <div className={`${styles.carrProduto} ${styles.carrQtd}`}><RiSubtractLine />{item.ppd_qtd}<RiAddLine /></div>
       <div className={`${styles.carrProduto} ${styles.valores}`}>{item.prd_valor}</div>

@@ -78,4 +78,10 @@
     align-items: center;
     padding: 1rem;
     font-weight: bold;
-}
+} 
+
+.grid .carrProduto .iconChat {
+    margin-top: 0.5rem; 
+    cursor: pointer;
+    color: #B71C1C; /* Pode alterar conforme o padrão de cor */
+  }
