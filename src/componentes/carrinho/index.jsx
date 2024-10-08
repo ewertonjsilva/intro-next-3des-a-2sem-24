@@ -10,8 +10,20 @@ import { carrinho } from '../../mocks/dados';
 function CompCarrinho() {
 
   const [produtosCarrinho, setProdutosCarrinho] = useState(carrinho);
-  console.log(produtosCarrinho);
+  const [modalAberto, setModalAberto] = useState(false); // Estado do modal
+  const [observacao, setObservacao] = useState(""); // Estado para a observação
 
+  const abrirModal = (obs) => {
+    setObservacao(obs); // Define a observação existente ou vazio
+    setModalAberto(true); // Abre o modal
+  };
+
+  const fecharModal = () => setModalAberto(false);
+
+  const salvarObservacao = () => {
+    // Lógica para salvar a observação
+    fecharModal();
+  };
 
   // Use a função reduce para somar o valor total
   const valorTotal = produtosCarrinho.reduce((total, produto) => {
@@ -34,7 +46,7 @@ function CompCarrinho() {
 
       {
         produtosCarrinho.map((itemCarrinho) => (
-          <Grid item={itemCarrinho} />
+          <Grid key={`${itemCarrinho.prd_id}${itemCarrinho.ppd_qtd}${itemCarrinho.ppd_obs}`} item={itemCarrinho} abrirModal={abrirModal} />
         ))
       }
 
@@ -42,16 +54,31 @@ function CompCarrinho() {
         <div></div>
         <div className={styles.total}>R$ {valorTotal}</div>
       </div>
-    </div>
 
+      {modalAberto && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <textarea
+              value={observacao}
+              onChange={(e) => setObservacao(e.target.value)}
+              placeholder="Digite a observação..."
+            />
+            <button onClick={salvarObservacao}>Salvar</button>
+            <button onClick={fecharModal}>Fechar</button>
+          </div>
+        </div>
+      )}
+
+    </div>
   );
 }
 
 export default CompCarrinho;
 
-function Grid(itemCarrinho) {
-  const item = itemCarrinho.item;
+function Grid({ item, abrirModal }) {
+
   const total = item.prd_valor * item.ppd_qtd;
+
   return (
     <div className={styles.grid}>
       <div>
@@ -66,16 +93,25 @@ function Grid(itemCarrinho) {
             />
           </div>
           <span>{item.prd_nome}</span>
-          <RiDeleteBin6Line />
+          <RiDeleteBin6Line className={styles.iconDelete} />
         </div>
-        <div>
-          <RiChat1Line />
-          {
-            item.ppd_obs.length > 0 ? <textarea>{item.ppd_obs}</textarea> : <span>Adicionar observação</span>
-          }
+
+        <div className={styles.observacao}>
+        <RiChat1Line className={styles.iconChat} onClick={() => abrirModal(item.ppd_obs)} />
+          {item.ppd_obs.length > 0 ? (
+            <textarea className={styles.textareaCarrinho} onClick={() => abrirModal(item.ppd_obs)}>{item.ppd_obs}</textarea>
+          ) : (
+            <span className={styles.spanBtn} onClick={() => abrirModal("")}>Adicionar observação</span>
+          )}
         </div>
+
       </div>
-      <div className={`${styles.carrProduto} ${styles.carrQtd}`}><RiSubtractLine />{item.ppd_qtd}<RiAddLine /></div>
+
+      <div className={`${styles.carrProduto} ${styles.carrQtd}`}>
+        <RiSubtractLine />
+        {item.ppd_qtd}
+        <RiAddLine />
+      </div>
       <div className={`${styles.carrProduto} ${styles.valores}`}>{item.prd_valor}</div>
       <div className={`${styles.carrProduto} ${styles.valores}`}>{total.toFixed(2)}</div>
     </div>

@@ -52,8 +52,21 @@
     height: 100%;
 }
 
-.grid .carrProduto span {
-    width: 100%;
+.spanBtn {
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0.8rem 1.2rem;
+    /* background-color: #B71C1C; */
+    color: #B71C1C;
+    border-radius: 2rem;
+    border: 2px solid #B71C1C;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.spanBtn:hover {
+    background-color: #FAFAFA;
+    color: #B71C1C;
 }
 
 .grid .carrQtd {
@@ -78,10 +91,103 @@
     align-items: center;
     padding: 1rem;
     font-weight: bold;
-} 
+}
 
-.grid .carrProduto .iconChat {
-    margin-top: 0.5rem; 
+.iconChat {
+    margin-top: 0.5rem;
     cursor: pointer;
-    color: #B71C1C; /* Pode alterar conforme o padrão de cor */
+    color: #B71C1C;
+    /* Vermelho para destacar */
+    font-size: 2rem;
+    transition: color 0.3s ease;
+}
+
+.iconChat:hover {
+    color: #880E0E;
+    /* Cor mais escura ao passar o mouse */
+}
+
+.observacao {
+    margin-bottom: 0.5rem;
+}
+
+.textareaCarrinho {
+    width: 80%;
+    /* height: 100px; */
+    /* margin-bottom: 1rem; */
+    padding: 0.5rem;
+    border: 1px solid #B71C1C;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    background-color: #FAFAFA;
+    color: #333;
+    outline: none;
+    resize: vertical; /* Permite redimensionar verticalmente */
+    white-space: pre-wrap; /* Permite a quebra de linha */
+    word-wrap: break-word; /* Garante que as palavras longas sejam quebradas */
   }
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContent {
+    background-color: #FAFAFA;
+    /* Fundo claro para contrastar com o vermelho */
+    padding: 2rem;
+    border: 2px solid #B71C1C;
+    border-radius: 1rem;
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    align-items: center;
+    /* Adiciona uma sombra suave */
+}
+
+.modalContent textarea {
+    width: 90%;
+    height: 100px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #B71C1C;
+    /* Usando a cor principal */
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    background-color: #FAFAFA;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.modalContent textarea:focus {
+    border-color: #880E0E;
+    /* Um vermelho mais escuro ao focar */
+}
+
+.modalContent button {
+    padding: 0.8rem 1.5rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    background-color: #B71C1C;
+    /* Botão principal na cor do tema */
+    color: #FAFAFA;
+    border: none;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.modalContent button:hover {
+    background-color: #880E0E;
+    /* Escurece o vermelho ao passar o mouse */
+}
