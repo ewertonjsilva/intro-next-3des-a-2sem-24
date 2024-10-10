@@ -65,8 +65,8 @@ function Header() {
             className={rota === '/' ? styles.active : ''}
           >Home</Link>
           <Link
-            href='/listprod'
-            className={rota === '/listprod' ? styles.active : ''}
+            href='/produtos'
+            className={rota === '/produtos' ? styles.active : ''}
           >Produtos</Link>
 
           {/* CARRINHO / RESTAURANTE */}
@@ -130,9 +130,9 @@ function Header() {
           className={rota === '/' ? styles.active : ''}
         >Home</Link>
         <Link
-          href='/listprod'
+          href='/produtos'
           onClick={ativaMenu}
-          className={rota === '/listprod' ? styles.active : ''}
+          className={rota === '/produtos' ? styles.active : ''}
         >Produtos</Link>
         <Link
           href='/usuarios/cadastro'
