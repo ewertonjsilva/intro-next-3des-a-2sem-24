@@ -1,3 +1,8 @@
+'use client'
+
+import { Provider } from 'react-redux'
+import store from '../services/redux/store';
+
 import { MdLunchDining, MdLocalBar, MdDining, MdIcecream, MdFastfood } from 'react-icons/md';
 
 import styles from "./page.module.css";
@@ -7,19 +12,21 @@ import ProdutosHome from "@/componentes/produtos/produtosHome";
 
 export default function Home() {
   return (
-    <div className="containerGlobal">
-      <Slider />
+    <Provider store={store}>
+      <div className="containerGlobal">
+        <Slider />
 
-      <div className={styles.tipos}>
-        <MdLunchDining className={styles.tpicon} />
-        <MdLocalBar className={styles.tpicon} />
-        <MdDining className={styles.tpicon} />
-        <MdIcecream className={styles.tpicon} />
-        <MdFastfood className={styles.tpicon} />
+        <div className={styles.tipos}>
+          <MdLunchDining className={styles.tpicon} />
+          <MdLocalBar className={styles.tpicon} />
+          <MdDining className={styles.tpicon} />
+          <MdIcecream className={styles.tpicon} />
+          <MdFastfood className={styles.tpicon} />
+        </div>
+
+        <ProdutosHome />
+
       </div>
-
-      <ProdutosHome />
-
-    </div>
+    </Provider>
   );
 }

@@ -1,6 +1,10 @@
 'use client'
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../services/redux/store/cartSlice';
+
 import Image from 'next/image';
 
 import carr from '../../../../public/icones/carrinho.svg';
@@ -24,9 +28,11 @@ function Produto({ idProduto }) {
     const [qtd, setQtd] = useState(1);
     const [total, setTotal] = useState(0);
 
+    const dispatch = useDispatch();  // Utiliza o dispatch do Redux
+
     const router = useRouter();
-    const user = JSON.parse(localStorage.getItem('user'));  
-    
+    const user = JSON.parse(localStorage.getItem('user'));
+
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const apiPorta = process.env.NEXT_PUBLIC_API_PORTA;
 
@@ -36,7 +42,7 @@ function Produto({ idProduto }) {
     }
 
     useEffect(() => {
-              
+
         handleCarregaProduto();
         setTotal(produto.prd_valor);
 
@@ -72,6 +78,17 @@ function Produto({ idProduto }) {
 
     function handleAddItemCarrinho() {
         if (user) {
+
+            const item = {
+                prd_id: produto.prd_id,
+                prd_nome: produto.prd_nome,
+                prd_valor: produto.prd_valor,
+                prd_img: produto.prd_img,
+                ppd_qtd: qtd, 
+                ppd_obs: ''
+            };
+            dispatch(addToCart(item));  // Adiciona o item ao carrinho global
+
             router.push('/carrinho');
         } else {
             router.push('/usuarios/login');
@@ -88,19 +105,19 @@ function Produto({ idProduto }) {
                                 loader={imageLoader}
                                 className={styles.imagemProd}
                                 src={produto.prd_img}
-                                alt={"Imagem " + produto.prd_nome} 
+                                alt={"Imagem " + produto.prd_nome}
                                 width={200}
-                                height={200}                              
+                                height={200}
                             />
                         </div>
                         <div className={styles.containerItem}>
                             <div className={styles.titulo}>
                                 <h1>{produto.prd_nome}</h1>
-                                <Image 
-                                    loader={imageLoader}                                     
-                                    className={styles.icon} 
-                                    src={produto.ptp_icone} 
-                                    alt={produto.ptp_icone} 
+                                <Image
+                                    loader={imageLoader}
+                                    className={styles.icon}
+                                    src={produto.ptp_icone}
+                                    alt={produto.ptp_icone}
                                     width={20}
                                     height={20}
                                 />
