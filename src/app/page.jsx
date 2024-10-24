@@ -1,7 +1,7 @@
 'use client'
 
-import { Provider } from 'react-redux'
-import store from '../services/redux/store';
+// import { Provider } from 'react-redux'
+// import store from '../services/redux/store';
 
 import { MdLunchDining, MdLocalBar, MdDining, MdIcecream, MdFastfood } from 'react-icons/md';
 
@@ -12,7 +12,7 @@ import ProdutosHome from "@/componentes/produtos/produtosHome";
 
 export default function Home() {
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <div className="containerGlobal">
         <Slider />
 
@@ -27,6 +27,6 @@ export default function Home() {
         <ProdutosHome />
 
       </div>
-    </Provider>
+    // </Provider>
   );
 }

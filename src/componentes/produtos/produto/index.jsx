@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../../services/redux/store/cartSlice';
+// import { useDispatch } from 'react-redux';
+// import { addToCart } from '../../../services/redux/store/cartSlice';
 
 import Image from 'next/image';
 
@@ -28,7 +28,7 @@ function Produto({ idProduto }) {
     const [qtd, setQtd] = useState(1);
     const [total, setTotal] = useState(0);
 
-    const dispatch = useDispatch();  // Utiliza o dispatch do Redux
+    //const dispatch = useDispatch();  // Utiliza o dispatch do Redux
 
     const router = useRouter();
     const user = JSON.parse(localStorage.getItem('user'));
@@ -37,7 +37,7 @@ function Produto({ idProduto }) {
     const apiPorta = process.env.NEXT_PUBLIC_API_PORTA;
 
     const imageLoader = ({ src, width, quality }) => {
-        console.log(`${apiUrl}:${apiPorta}${src}?w=${width}&q=${quality || 75}`);
+        //console.log(`${apiUrl}:${apiPorta}${src}?w=${width}&q=${quality || 75}`);
         return `${apiUrl}:${apiPorta}${src}?w=${width}&q=${quality || 75}`
     }
 
@@ -87,7 +87,7 @@ function Produto({ idProduto }) {
                 ppd_qtd: qtd, 
                 ppd_obs: ''
             };
-            dispatch(addToCart(item));  // Adiciona o item ao carrinho global
+            //dispatch(addToCart(item));  // Adiciona o item ao carrinho global
 
             router.push('/carrinho');
         } else {
