@@ -20,7 +20,7 @@ export default function Slider() {
             interval={5000}
         >
             <div>
-                <Image src={promo1} alt="promoção 1" />
+                <Image src={promo1} alt="promoção 1" priority={true} />
             </div>
             <div>
                 <Image src={promo2} alt="promoção 2" />

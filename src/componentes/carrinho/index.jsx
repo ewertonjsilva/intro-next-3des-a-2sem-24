@@ -1,20 +1,29 @@
 'use client'
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increaseQuantity, decreaseQuantity, removeFromCart } from '@/services/redux/store/cartSlice';
+
 import Image from 'next/image';
 import { RiDeleteBin6Line, RiAddLine, RiSubtractLine, RiChat1Line } from "react-icons/ri";
 
 import styles from './index.module.css';
 
-import { carrinho } from '../../mocks/dados';
+// import { carrinho } from '../../mocks/dados';
 
 function CompCarrinho() {
-  // Adicionar um campo temporário de id único aos produtos
-  const inicializaCarrinhoComIds = carrinho.map((produto, index) => ({
-    ...produto,
-    temp_id: `${produto.prd_id}-${index}-${new Date().getTime()}`
-  }));
 
-  const [produtosCarrinho, setProdutosCarrinho] = useState(inicializaCarrinhoComIds);
+  const produtosCarrinho = useSelector(state => state.cart.items);
+  const dispatch = useDispatch();
+
+  console.log(produtosCarrinho);
+
+  // Adicionar um campo temporário de id único aos produtos
+  // const inicializaCarrinhoComIds = carrinho.map((produto, index) => ({
+  //   ...produto,
+  //   temp_id: `${produto.prd_id}-${index}-${new Date().getTime()}`
+  // }));
+
+  // const [produtosCarrinho, setProdutosCarrinho] = useState(inicializaCarrinhoComIds);
   const [modalAberto, setModalAberto] = useState(false);
   const [observacao, setObservacao] = useState("");
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
@@ -76,16 +85,18 @@ function CompCarrinho() {
         <div className={styles.carrTitulo}>Total</div>
       </div>
 
-      {produtosCarrinho.map((itemCarrinho) => (
-        <Grid
-          key={itemCarrinho.temp_id}
-          item={itemCarrinho}
-          abrirModal={abrirModal}
-          aumentarQuantidade={aumentarQuantidade}
-          diminuirQuantidade={diminuirQuantidade}
-          excluirProduto={excluirProduto}
-        />
-      ))}
+      {
+        produtosCarrinho.map((itemCarrinho) => (
+          <Grid
+            key={itemCarrinho.temp_id}
+            item={itemCarrinho}
+            abrirModal={abrirModal}
+            aumentarQuantidade={aumentarQuantidade}
+            diminuirQuantidade={diminuirQuantidade}
+            excluirProduto={excluirProduto}
+          />
+        ))
+      }
 
       <div className={styles.gridTotal}>
         <div></div>

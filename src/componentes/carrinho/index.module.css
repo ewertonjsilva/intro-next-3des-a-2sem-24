@@ -51,11 +51,11 @@
 }
 
 .grid .carrProduto .contImgCarrProd {
-    width: 5rem;
-    height: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 5rem;
+    height: 5rem;
     overflow: hidden;
     border-radius: 5rem;
     margin-right: 1rem;
@@ -85,10 +85,12 @@
 }
 
 .grid .carrQtd {
+    display: flex;
     justify-content: space-around;
 }
 
 .grid .valores {
+    display: flex;
     justify-content: center;
 }
 
@@ -191,7 +193,7 @@
 
 .conteinerBotaoModal {
     display: flex;   
-    justify-content: end;
+    justify-content: flex-end;
     width: 100%;  
 }
 

@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning={true}>
         {/* <div className="layout">   */}
         <Providers>
-          {/* <Cabecalho /> */}
+          <Cabecalho />
             {children}
-          {/* <Rodape /> */}
+          <Rodape />
         </Providers>
         {/* </div> */}
       </body>
