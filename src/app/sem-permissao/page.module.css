@@ -1,0 +1,13 @@
+.containerTitulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    height: 8rem;
+    border: 0.2rem solid #0f0; 
+    padding: 1rem;
+}
+
+.txtTitulo {
+    color: #0f0;
+}
