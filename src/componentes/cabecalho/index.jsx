@@ -31,7 +31,7 @@ function Header() {
       const token = user.acesso; 
       
       if (typeof(token) == 'number') {
-        console.log(token);
+        // console.log(token);
         document.cookie = `token=${token}; path=/;`;
       }
       setUsuarioLog(infoUsu);

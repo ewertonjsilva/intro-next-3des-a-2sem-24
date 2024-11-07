@@ -14,8 +14,8 @@ function CompCarrinho() {
 
   const produtosCarrinho = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
-
-  console.log(produtosCarrinho);
+  
+  // console.log(produtosCarrinho);
 
   // Adicionar um campo temporário de id único aos produtos
   // const inicializaCarrinhoComIds = carrinho.map((produto, index) => ({
@@ -28,7 +28,7 @@ function CompCarrinho() {
   const [observacao, setObservacao] = useState("");
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
 
-  useEffect(() => {
+  useEffect(() => {       
     // console.log('Renderiza');
   }, [produtosCarrinho]);
 
@@ -66,9 +66,7 @@ function CompCarrinho() {
   };
 
   const excluirProduto = (produto) => {
-    setProdutosCarrinho(produtosCarrinho.filter((p) =>
-      p.temp_id !== produto.temp_id
-    ));
+    dispatch(removeFromCart(produto));
   };
 
   const valorTotal = produtosCarrinho.reduce((total, produto) => {
@@ -125,8 +123,16 @@ function CompCarrinho() {
 export default CompCarrinho;
 
 function Grid({ item, abrirModal, aumentarQuantidade, diminuirQuantidade, excluirProduto }) {
+
   const total = parseFloat(item.prd_valor.replace('$', '').replace(',', '.')) * item.ppd_qtd;
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiPorta = process.env.NEXT_PUBLIC_API_PORTA;
+
+  const imageLoader = ({ src, width, quality }) => {
+    return `${apiUrl}:${apiPorta}${src}?w=${width}&q=${quality || 75}`
+  }
+  
   return (
     <div className={styles.grid}>
       <div>
@@ -135,6 +141,7 @@ function Grid({ item, abrirModal, aumentarQuantidade, diminuirQuantidade, exclui
             <div className={styles.carrProduto}>
               <div className={styles.contImgCarrProd}>
                 <Image
+                  loader={imageLoader}
                   src={item.prd_img}
                   alt={item.prd_nome}
                   width={100}
@@ -159,7 +166,7 @@ function Grid({ item, abrirModal, aumentarQuantidade, diminuirQuantidade, exclui
               )}
             </div>
           </div>
-          <RiDeleteBin6Line className={styles.iconActions} onClick={() => excluirProduto(item)} />
+          <RiDeleteBin6Line className={styles.iconActions} onClick={() => excluirProduto(item.prd_id)} />
         </div>
       </div>
 

@@ -4,16 +4,16 @@ import styles from "./page.module.css";
 export default function SemPermissao() {
     return (
         <div className="containerGlobal">
-            <div className={styles.containerTitulo}>
-                <Image                    
-                    src={produto.prd_img}
-                    alt={produto.prd_nome}
-                    width={200}
-                    height={200}
-                    className={styles.imagemProduto}
+            <div className={styles.imagemContainer}>
+                <Image
+                    src={'acesso.svg'}
+                    alt={'acesso-proibido.svg'}
+                    width={500}
+                    height={500}
+                    className={styles.imagem}
                 />
-                <h2 className={styles.txtTitulo}>Seu usuário não tem privilégios para acessar esta página!</h2>
             </div>
+            <h2 className={styles.txtTitulo}>Seu usuário não tem privilégios para acessar esta página!</h2>
         </div>
     );
 }

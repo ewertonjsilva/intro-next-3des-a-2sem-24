@@ -1,13 +1,21 @@
-.containerTitulo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-    height: 8rem;
-    border: 0.2rem solid #0f0; 
-    padding: 1rem;
+.txtTitulo {
+    color: #B71C1C; 
+    margin-bottom: 10rem;
 }
 
-.txtTitulo {
-    color: #0f0;
+.imagemContainer {
+    width: 50rem;
+    height: 50rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 2rem;
+    margin-bottom: 16px;
+}
+
+.imagem {
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
 }

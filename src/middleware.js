@@ -24,7 +24,7 @@ export function middleware(req) {
     return NextResponse.next(); // Cliente tem acesso às rotas de cliente
   } else {
     // Caso o nível do usuário não corresponda à rota, redirecione para uma página de erro ou login
-    return NextResponse.redirect(new URL('/usuarios/sem-permissao', req.url)); // Página de acesso negado
+    return NextResponse.redirect(new URL('/sem-permissao', req.url)); // Página de acesso negado
   }
 }
 
@@ -43,4 +43,5 @@ export const config = {
 // http://localhost:3000/gerenciamento/funcionarios
 
 
-// thomasfranciscocortereal@kaynak.com.br
+// thomasfranciscocortereal@kaynak.com.br - ADM
+// thomasfranciscocortereal@kaynak.com.br - CLIENTE
