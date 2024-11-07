@@ -27,9 +27,11 @@ function Header() {
         nome: primeiroNome[0],
         tipo: user.acesso
       }
-      // E nas requisições subsequentes, envie o token nos cookies:
-      const token = user;
-      if (token) {
+      // E nas requisições subsequentes, envie o token nos cookies:      
+      const token = user.acesso; 
+      
+      if (typeof(token) == 'number') {
+        console.log(token);
         document.cookie = `token=${token}; path=/;`;
       }
       setUsuarioLog(infoUsu);
