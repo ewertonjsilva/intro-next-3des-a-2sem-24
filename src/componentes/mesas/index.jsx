@@ -1,6 +1,9 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import styles from  './index.module.css';
+import styles from './index.module.css';
+
+import { MdDelete } from "react-icons/md";
+
 // import { useNavigate } from 'react-router-dom'; // Se estiver usando React Router
 
 function Mesas() {
@@ -97,6 +100,9 @@ function Mesas() {
           style={{ borderColor: getStatusColor(mesa.mes_status) }}
         // onClick={() => handleCardClick(mesa)}
         >
+          <div className={styles.constainerDelete}>
+            <MdDelete className={styles.iconDelete} />
+          </div>
           <h2>Mesa {mesa.mes_nome}</h2>
           <p>Status: {mesa.mes_status === 0 ? 'Livre' : mesa.mes_status === 1 ? 'Reservada' : mesa.mes_status === 2 ? 'Ocupada' : 'Inativa'}</p>
           <p>Lugares: {mesa.mes_lugares}</p>
@@ -106,6 +112,9 @@ function Mesas() {
           </div>
         </div>
       ))}
+      <button className={styles.addButton}>
+        +
+      </button>
     </div>
   );
 }
