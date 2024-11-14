@@ -4,9 +4,14 @@ import styles from './index.module.css';
 
 import { MdDelete } from "react-icons/md";
 
+import ModalMesas from './modalMesas';
+
 // import { useNavigate } from 'react-router-dom'; // Se estiver usando React Router
 
 function Mesas() {
+
+  const [showModal, setShowModal] = useState(false);
+
   const [mesas, setMesas] = useState([
     {
       "mes_id": 1,
@@ -46,16 +51,6 @@ function Mesas() {
   ]);
   // const navigate = useNavigate();
 
-  useEffect(() => {
-    // // Função para buscar mesas da API
-    // async function fetchMesas() {
-    //   const response = await fetch('http://suaapi.com/mesas'); // URL da API
-    //   const data = await response.json();
-    //   setMesas(data);
-    // }
-    // fetchMesas();
-  }, []);
-
   const getStatusColor = (status) => {
     switch (status) {
       case 0:
@@ -70,6 +65,20 @@ function Mesas() {
         return 'white';
     }
   };
+
+  useEffect(() => {
+    // // Função para buscar mesas da API
+    // async function fetchMesas() {
+    //   const response = await fetch('http://suaapi.com/mesas'); // URL da API
+    //   const data = await response.json();
+    //   setMesas(data);
+    // }
+    // fetchMesas();
+  }, []);
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  }; 
 
   // const alterarLugares = (id, quantidade) => {
   //   setMesas((mesas) =>
@@ -112,9 +121,14 @@ function Mesas() {
           </div>
         </div>
       ))}
-      <button className={styles.addButton}>
+      <button className={styles.addButton} onClick={() => setShowModal(true)}>
         +
       </button>
+
+      {showModal && (
+        <ModalMesas onClose={handleModalClose} />
+      )}
+
     </div>
   );
 }
