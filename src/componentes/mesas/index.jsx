@@ -4,6 +4,7 @@ import styles from './index.module.css';
 
 import { MdDelete } from "react-icons/md";
 
+import api from '@/services/api';
 import ModalMesas from './modalMesas';
 
 // import { useNavigate } from 'react-router-dom'; // Se estiver usando React Router
@@ -12,43 +13,7 @@ function Mesas() {
 
   const [showModal, setShowModal] = useState(false);
 
-  const [mesas, setMesas] = useState([
-    {
-      "mes_id": 1,
-      "mes_nome": "1",
-      "mes_status": 1,
-      "mes_lugares": 4,
-      "ped_id": null
-    },
-    {
-      "mes_id": 2,
-      "mes_nome": "2",
-      "mes_status": 0,
-      "mes_lugares": 2,
-      "ped_id": null
-    },
-    {
-      "mes_id": 3,
-      "mes_nome": "3",
-      "mes_status": 0,
-      "mes_lugares": 2,
-      "ped_id": null
-    },
-    {
-      "mes_id": 4,
-      "mes_nome": "4",
-      "mes_status": 2,
-      "mes_lugares": 4,
-      "ped_id": null
-    },
-    {
-      "mes_id": 5,
-      "mes_nome": "5",
-      "mes_status": 2,
-      "mes_lugares": 4,
-      "ped_id": 5
-    }
-  ]);
+  const [mesas, setMesas] = useState([]);
   // const navigate = useNavigate();
 
   const getStatusColor = (status) => {
@@ -67,28 +32,58 @@ function Mesas() {
   };
 
   useEffect(() => {
-    // // Função para buscar mesas da API
-    // async function fetchMesas() {
-    //   const response = await fetch('http://suaapi.com/mesas'); // URL da API
-    //   const data = await response.json();
-    //   setMesas(data);
-    // }
-    // fetchMesas();
-  }, []);
+    handleListaMesas();
+  }, [showModal]);
+
+  async function handleListaMesas() {
+    try {
+      const response = await api.get('/mesas');
+      const confirmaListagem = response.data.sucesso;
+      if (confirmaListagem) {
+        setMesas(response.data.dados);
+      }
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.mensagem + '\n' + error.response.data.dados);
+      } else {
+        alert('Erro no front-end' + '\n' + error);
+      }
+    }
+  }
 
   const handleModalClose = () => {
     setShowModal(false);
-  }; 
+  };
 
-  // const alterarLugares = (id, quantidade) => {
-  //   setMesas((mesas) =>
-  //     mesas.map((mesa) =>
-  //       mesa.mes_id === id
-  //         ? { ...mesa, mes_lugares: Math.max(1, mesa.mes_lugares + quantidade) }
-  //         : mesa
-  //     )
-  //   );
-  // };
+  async function alterarLugares(id, quantidade) {
+    // Calcule a nova lista de mesas fora do callback de setMesas
+    let mesaAtualizada;
+    const novasMesas = mesas.map((mesa) => {
+      if (mesa.mes_id === id) {
+        mesaAtualizada = { ...mesa, mes_lugares: Math.max(1, mesa.mes_lugares + quantidade) };
+        return mesaAtualizada;
+      }
+      return mesa;
+    });
+
+    // Atualize o estado
+    setMesas(novasMesas);
+
+    // Certifique-se de que `mesaAtualizada` foi definido
+    if (mesaAtualizada) {
+      try {
+        // Faça a chamada assíncrona com os dados atualizados
+        const response = await api.patch(`/mesas/${id}`, mesaAtualizada);
+        console.log("Atualização bem-sucedida:", response.data);
+      } catch (error) {
+        if (error.response) {
+          alert(error.response.data.mensagem + '\n' + error.response.data.dados);
+        } else {
+          alert('Erro no front-end' + '\n' + error);
+        }
+      }
+    }
+  };
 
   // const handleCardClick = (mesa) => {
   //   if (mesa.mes_status === 2) {
@@ -116,8 +111,8 @@ function Mesas() {
           <p>Status: {mesa.mes_status === 0 ? 'Livre' : mesa.mes_status === 1 ? 'Reservada' : mesa.mes_status === 2 ? 'Ocupada' : 'Inativa'}</p>
           <p>Lugares: {mesa.mes_lugares}</p>
           <div className={styles.mesaLugaresControl}>
-            <button /*onClick={(e) => { e.stopPropagation(); alterarLugares(mesa.mes_id, -1); }}*/>-</button>
-            <button /*onClick={(e) => { e.stopPropagation(); alterarLugares(mesa.mes_id, 1); }}*/>+</button>
+            <button onClick={(e) => { e.stopPropagation(); alterarLugares(mesa.mes_id, -1, mesa); }}>-</button>
+            <button onClick={(e) => { e.stopPropagation(); alterarLugares(mesa.mes_id, 1, mesa); }}>+</button>
           </div>
         </div>
       ))}

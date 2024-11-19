@@ -4,7 +4,7 @@ import prod2 from '../../public/temp/hamburger-batata.jpg';
 import prod3 from '../../public/temp/lanche1.jpg';
 import prod4 from '../../public/temp/suco-laranja.jpg';
 import prod5 from '../../public/temp/suco2.jpg';
-import prod6 from '../../public/temp/sorvete.jpg'; 
+import prod6 from '../../public/temp/sorvete.jpg';
 
 import ic_lanche from '../../public/icones/lanche.svg';
 import ic_combo from '../../public/icones/todos.svg';
@@ -70,8 +70,8 @@ export let produtos = [
 
 export let estados = [
     {
-        cid_uf: 'SP', 
-    }, 
+        cid_uf: 'SP',
+    },
     {
         cid_uf: 'RJ'
     }
@@ -79,51 +79,88 @@ export let estados = [
 
 export let cidades = [
     {
-        cid_id: 1, 
+        cid_id: 1,
         cid_nome: 'Tupã'
-    }, 
+    },
     {
-        cid_id: 2, 
+        cid_id: 2,
         cid_nome: 'Parapuã'
-    }, 
+    },
     {
-        cid_id: 3, 
+        cid_id: 3,
         cid_nome: 'Marília'
-    }, 
+    },
 ];
 
 export let carrinho = [
     {
         prd_id: 1,
         prd_nome: 'Hamburguer de Bacon',
-        prd_img: prod1, 
-        ppd_qtd: 2, 
+        prd_img: prod1,
+        ppd_qtd: 2,
         prd_valor: '21.00',
         ppd_obs: 'Hamburguer bem passado'
     },
     {
         prd_id: 1,
         prd_nome: 'Hamburguer de Bacon',
-        prd_img: prod1, 
-        ppd_qtd: 1, 
+        prd_img: prod1,
+        ppd_qtd: 1,
         prd_valor: '21.00',
         ppd_obs: ''
     },
     {
         prd_id: 4,
         prd_nome: 'Suco de laranja',
-        prd_img: prod4, 
-        ppd_qtd: 1, 
+        prd_img: prod4,
+        ppd_qtd: 1,
         prd_valor: '8.25',
         ppd_obs: 'Sem açucar'
     },
     {
         prd_id: 4,
         prd_nome: 'Suco de laranja',
-        prd_img: prod4, 
-        ppd_qtd: 2, 
+        prd_img: prod4,
+        ppd_qtd: 2,
         prd_valor: '8.25',
         ppd_obs: 'Com açucar e gelo'
     },
 ]
 
+export let mesas = [
+    {
+        "mes_id": 1,
+        "mes_nome": "1",
+        "mes_status": 1,
+        "mes_lugares": 4,
+        "ped_id": null
+    },
+    {
+        "mes_id": 2,
+        "mes_nome": "2",
+        "mes_status": 0,
+        "mes_lugares": 2,
+        "ped_id": null
+    },
+    {
+        "mes_id": 3,
+        "mes_nome": "3",
+        "mes_status": 0,
+        "mes_lugares": 2,
+        "ped_id": null
+    },
+    {
+        "mes_id": 4,
+        "mes_nome": "4",
+        "mes_status": 2,
+        "mes_lugares": 4,
+        "ped_id": null
+    },
+    {
+        "mes_id": 5,
+        "mes_nome": "5",
+        "mes_status": 2,
+        "mes_lugares": 4,
+        "ped_id": 5
+    }
+];

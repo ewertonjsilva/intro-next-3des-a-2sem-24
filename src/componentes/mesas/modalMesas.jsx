@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import api from '@/services/api';
+
 import styles from './modalMesas.module.css';
 
 export default function ModalMesas({ onClose }) {
@@ -12,19 +14,13 @@ export default function ModalMesas({ onClose }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setDados((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = () => {
-        // valida
-        // onSave(formData);
-        onClose();
-    }; 
-
     function handleValida() {
-        let validado = true; 
+        let validado = true;
         if (dados.mes_nome == '') {
-            alert('O nome da mesa deve ser preenchido!'); 
+            alert('O nome da mesa deve ser preenchido!');
             validado = false;
         }
         if (dados.mes_lugares < 1) {
@@ -51,12 +47,12 @@ export default function ModalMesas({ onClose }) {
                     alert('Erro no front-end' + '\n' + error);
                 }
             }
-        }        
+        }
     }
 
     return (
         <div className={styles.modal}>
-            <div className={styles.modalContent}>                
+            <div className={styles.modalContent}>
                 <label>
                     Nome da mesa:
                     <input
@@ -78,7 +74,7 @@ export default function ModalMesas({ onClose }) {
                 <div className={styles.modalActions}>
                     <button className={styles.saveButton} onClick={() => handleCadMesa()}>Salvar</button>
                     <button className={styles.closeButton} onClick={onClose}>Cancelar</button>
-                </div>                
+                </div>
             </div>
         </div>
     );
