@@ -85,6 +85,21 @@ function Mesas() {
     }
   };
 
+  async function handleExcluiMesa(idMesa) {
+    try {
+      const response = await api.delete(`/mesas/${idMesa}`);
+      if (response) {
+        alert(`Mesa ${idMesa} excluída com secesso!`);         
+      }
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.mensagem + '\n' + error.response.data.dados);
+      } else {
+        alert('Erro no front-end' + '\n' + error);
+      }
+    }
+  }
+
   // const handleCardClick = (mesa) => {
   //   if (mesa.mes_status === 2) {
   //     // Redirecionar para a tela de pedido da mesa ocupada
@@ -105,7 +120,7 @@ function Mesas() {
         // onClick={() => handleCardClick(mesa)}
         >
           <div className={styles.constainerDelete}>
-            <MdDelete className={styles.iconDelete} />
+            <MdDelete className={styles.iconDelete} onClick={() => handleExcluiMesa(mesa.mes_id)} />
           </div>
           <h2>Mesa {mesa.mes_nome}</h2>
           <p>Status: {mesa.mes_status === 0 ? 'Livre' : mesa.mes_status === 1 ? 'Reservada' : mesa.mes_status === 2 ? 'Ocupada' : 'Inativa'}</p>
