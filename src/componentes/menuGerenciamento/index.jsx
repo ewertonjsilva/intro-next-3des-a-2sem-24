@@ -23,7 +23,11 @@ export default function MenuGerenciamento() {
             <Link
                 href='/gerenciamento/funcionarios'
                 className={rota === '/gerenciamento/funcionarios' ? styles.active : ''}
-            >Funcionários</Link>
+            >Funcionários</Link>            
+            <Link
+                href='/gerenciamento/ingredientes'
+                className={rota === '/gerenciamento/ingredientes' ? styles.active : ''}
+            >Ingredientes</Link>
         </div>
     );
 }

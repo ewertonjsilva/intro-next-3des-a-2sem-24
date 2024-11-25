@@ -1,0 +1,84 @@
+.container {
+    display: flex; 
+    flex-direction: column;    
+    width: 70rem;  
+    /* align-items: center; */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.search {
+    display: flex;
+    gap: 1rem;
+}
+
+.search input {
+    padding: 0.8rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
+    width: 20rem;
+}
+
+.search select {
+    padding: 0.8rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
+}
+
+.addButton {
+    background-color: #B71C1C;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.addButton:hover {
+    background-color: #F05545;
+}
+
+
+.table {
+    /* width: 0 auto; */
+    border-collapse: collapse;
+    /* margin-left: 1rem; */
+}
+
+.table th {
+    padding: 1rem;
+    border: 0.3rem solid #B71C1C;
+    text-align: center;
+    background-color: #B71C1C; 
+    color: #fafafa;
+}
+
+.table td {    
+    padding: 1rem;
+    border-bottom: 0.3rem solid #B71C1C;
+    text-align: center; 
+    vertical-align: middle; 
+    cursor: pointer;
+}
+
+.table tr:hover td {    
+    background-color: #F05545;
+}
+
+.produtoImg {
+    width: 5rem;
+    height: 5rem;
+}
+
+.destaqueImg {
+    width: 2.5rem;
+    height: 2.5rem; 
+    margin: 0.5rem;
+}
+
