@@ -9,7 +9,9 @@ import prod6 from '../../public/temp/sorvete.jpg';
 import ic_lanche from '../../public/icones/lanche.svg';
 import ic_combo from '../../public/icones/todos.svg';
 import ic_bebida from '../../public/icones/suco.svg';
-import ic_sobremesa from '../../public/icones/icecream.svg';
+import ic_sobremesa from '../../public/icones/icecream.svg'; 
+
+import img_ingredientes from '../../public/temp/ingredientes.png'; 
 
 export let produtos = [
     {
@@ -163,4 +165,134 @@ export let mesas = [
         "mes_lugares": 4,
         "ped_id": 5
     }
+];
+
+export let ingredientesMock = [
+    {
+        "ing_id": 1,
+        "ing_nome": "Pão",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 0.00
+    },
+    {
+        "ing_id": 2,
+        "ing_nome": "Frango",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 7.00
+    },
+    {
+        "ing_id": 3,
+        "ing_nome": "Salmão",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 10.00
+    },
+    {
+        "ing_id": 4,
+        "ing_nome": "Alface",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 4.50
+    },
+    {
+        "ing_id": 5,
+        "ing_nome": "Rúcula",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 4.00
+    },
+    {
+        "ing_id": 6,
+        "ing_nome": "Tomate",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 5.25
+    },
+    {
+        "ing_id": 7,
+        "ing_nome": "Ervilha",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 6.00
+    },
+    {
+        "ing_id": 8,
+        "ing_nome": "Milho",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 5.00
+    },
+    {
+        "ing_id": 9,
+        "ing_nome": "Pepino",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 4.50
+    },
+    {
+        "ing_id": 10,
+        "ing_nome": "Cebola",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 4.00
+    },
+    {
+        "ing_id": 11,
+        "ing_nome": "Cebola Roxa",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 4.80
+    },
+    {
+        "ing_id": 12,
+        "ing_nome": "Aspargo",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 5.90
+    },
+    {
+        "ing_id": 13,
+        "ing_nome": "Batata",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 25.40
+    },
+    {
+        "ing_id": 14,
+        "ing_nome": "Uva",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 0.00
+    },
+    {
+        "ing_id": 15,
+        "ing_nome": "Abacaxi",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 0.00
+    },
+    {
+        "ing_id": 16,
+        "ing_nome": "Limão",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 0.00
+    },
+    {
+        "ing_id": 17,
+        "ing_nome": "Laranja",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 0.00
+    },
+    {
+        "ing_id": 18,
+        "ing_nome": "Bacon",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 6.00
+    },
+    {
+        "ing_id": 19,
+        "ing_nome": "Couve",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 5.00
+    },
+    {
+        "ing_id": 20,
+        "ing_nome": "Carne bovina",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 8.00
+    },
+    {
+        "ing_id": 21,
+        "ing_nome": "Carne suína",
+        "ing_img": img_ingredientes,
+        "ing_custo_adicional": 7.00
+    }
+    // Adicione mais ingredientes para teste
 ];
